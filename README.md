@@ -4,9 +4,17 @@
 
 ## Goal
 
-> Support as many shell as possible (`bash`, `zsh`, `fish`, `ksh`, `elvish`, etc.) with only one codebase.
+> Support as many shell as possible with only one codebase.
+> * [ ] `bash`, 
+> * [ ] `elvish`
+> * [ ] `fish`, 
+> * [ ] `ksh`, 
+> * [ ] `tcsh`, 
+> * [ ] `zsh`, 
+ 
 
-I'm familiar with some of them (`bash`, `zsh`, `fish`) but would love to have help support the other (`ksh`, `elvish`)
+:heart: I'm familiar with some of them (`bash`, `zsh`, `fish`) but would love to have help support the other (`ksh`, `elvish`).
+
 
 ## Install
 

@@ -27,4 +27,3 @@ if __name__ == "__main__":
     parser.add_argument('last_command_status', type=int, help='last command\'s exit status')
 
     prompt(parser.parse_args())
-    print("%s\n%s%s " % (current_working_path(), virtual_env(), prompt_symbol(args.last_command_status)))

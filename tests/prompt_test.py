@@ -9,7 +9,7 @@ def test_prompt_contains_symbol():
 
 
 def test_contains_path():
-    os.chdir(Path('/tmp'))
+    os.chdir(str(Path('/tmp')))
     assert '/tmp' in prompt.current_working_path()
 
 

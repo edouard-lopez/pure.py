@@ -4,6 +4,11 @@
 SHELL := /bin/bash
 INTERACTIVE=true
 
+.PHONY: tests
+tests:
+	clear
+	pytest tests/
+
 .PHONY: install-requirements
 install-requirements:
 	python3 -m pip install \

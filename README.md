@@ -1,4 +1,4 @@
-# Purish
+# Purish [![travis-badge]][travis-link]
 
 > Pretty, minimal and fast cross-shell prompt
 
@@ -42,3 +42,6 @@
 ## License
 
 MIT © Édouard Lopez.
+
+[travis-link]: https://travis-ci.com/edouard-lopez/pure "TravisCI" 
+[travis-badge]: https://travis-ci.com/edouard-lopez/pure.svg?branch=master

@@ -19,9 +19,33 @@
 ## Install
 
 👻 Not yet available.
+
+    git clone git@github.com:edouard-lopez/pure.git $HOME/.pure
 <!-- 
     pip install pure
 -->
+
+### Fish
+
+    cp $HOME/.pure/config/fish_prompt.fish $fish_config/functions/
+    echo 'set --global --export PURE_EXECUTABLE_PATH $HOME/.pure/' >> $fish_config/config.fish
+    exec fish
+
+### Zsh
+
+    cp $HOME/.pure/config/prompt.zsh $HOME/.zsh/
+    echo 'export PURE_EXECUTABLE_PATH=$HOME/.pure/' >> $HOME/.zshrc
+    echo 'source $HOME/.zsh/prompt.zsh' >> $HOME/.zshrc
+    exec zsh
+
+### Zsh
+
+    mkdir ~/.bash/ 
+    cp $HOME/.pure/config/prompt.bash $HOME/.bash/
+    echo 'export PURE_EXECUTABLE_PATH=$HOME/.pure/' >> $HOME/.bashrc
+    echo 'source $HOME/.bash/prompt.bash' >> $HOME/.bashrc
+    exec zsh
+
 ## Features
 
 - [ ] Excellent prompt character `❯` ;

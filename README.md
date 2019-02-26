@@ -31,7 +31,7 @@
 
 ## Install
 
-👻 Not yet available.
+:warning: Under heavy development, use at your own risk! 💀
 
     git clone git@github.com:edouard-lopez/pure.git $HOME/.pure
 <!-- 

@@ -3,10 +3,11 @@ import os
 
 import colorful
 
+from pure import colors
+
 
 def prompt_symbol(last_command_status=0):
-    print(colorful.red('last_command_status'), last_command_status)
-    symbol = '❯' if last_command_status == 0 else 'x❯'
+    symbol = colors.success('❯') if last_command_status == 0 else colors.danger('❯')
     return symbol
 
 

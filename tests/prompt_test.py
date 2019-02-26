@@ -1,11 +1,15 @@
 import os
 from pathlib import Path
 
-from pure import prompt
+from pure import prompt, colors
 
 
-def test_prompt_contains_symbol():
+def test_contains_prompt_symbol():
     assert '❯' in prompt.prompt_symbol()
+
+
+def test_prompt_symbol_is_colored_for_successful_command():
+    assert str(colors.success('❯')) == str(prompt.prompt_symbol())
 
 
 def test_contains_path():
@@ -14,10 +18,14 @@ def test_contains_path():
 
 
 def test_change_prompt_when_last_command_fail():
-    fail = 0
-    assert '❯' in prompt.prompt_symbol(last_command_status=fail)
+    success = 0
+    assert '❯' in prompt.prompt_symbol(last_command_status=success)
     fail = 1
-    assert 'x❯' in prompt.prompt_symbol(last_command_status=fail)
+    assert '❯' in prompt.prompt_symbol(last_command_status=fail)
+
+
+def test_prompt_symbol_is_colored_for_failed_command():
+    assert str(colors.danger('❯')) == str(prompt.prompt_symbol())
 
 
 def test_displays_virtual_env_invisible_when_deactivated():

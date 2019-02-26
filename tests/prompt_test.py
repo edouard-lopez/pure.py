@@ -21,7 +21,7 @@ def test_change_prompt_when_last_command_fail():
 
 
 def test_displays_virtual_env_invisible_when_deactivated():
-    del os.environ['VIRTUAL_ENV']
+    os.unsetenv('VIRTUAL_ENV')
 
     assert prompt.virtual_env() == ''
 

@@ -2,7 +2,7 @@ import colorful
 
 primary = colorful.purple1
 info = colorful.blue
-mute = colorful.grey
+mute = colorful.gray
 success = colorful.green
 normal = colorful.darkGray
 danger = colorful.red3

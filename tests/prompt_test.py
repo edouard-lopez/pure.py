@@ -39,7 +39,8 @@ def test_prompt_symbol_is_colored_for_failed_command():
 
 def test_displays_virtual_env_invisible_when_deactivated():
     os.unsetenv('VIRTUAL_ENV')
-    del os.environ['VIRTUAL_ENV']  # when running tests in a virtualenv
+    if 'VIRTUAL_ENV' in os.environ: # when running tests in a virtualenv
+        del os.environ['VIRTUAL_ENV']
 
     assert prompt.virtual_env() == ''
 

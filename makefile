@@ -7,7 +7,7 @@ INTERACTIVE=true
 .PHONY: tests
 tests:
 	clear
-	pytest -v tests/
+	pytest --verbose --capture=no tests/
 
 .PHONY: build-pure-on-bash
 build-pure-on-bash:

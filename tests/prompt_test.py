@@ -12,7 +12,8 @@ def test_contains_prompt_symbol():
 
 
 def test_prompt_symbol_is_colored_for_successful_command():
-    assert str(colors.success('❯')) == str(prompt.prompt_symbol())
+    assert str(prompt.prompt_symbol()) == str(colors.primary('❯'))
+    assert str(prompt.prompt_symbol()) == '\x1b[38;2;155;48;255m❯\x1b[39m'
 
 
 def test_contains_path():
@@ -26,7 +27,8 @@ def test_change_prompt_when_last_command_fail():
 
 
 def test_prompt_symbol_is_colored_for_failed_command():
-    assert str(colors.danger('❯')) == str(prompt.prompt_symbol())
+    assert str(prompt.prompt_symbol(last_command_status=FAIL)) == str(colors.danger('❯'))
+    assert str(prompt.prompt_symbol(last_command_status=FAIL)) == '\x1b[38;2;205;0;0m❯\x1b[39m'
 
 
 def test_displays_virtual_env_invisible_when_deactivated():

@@ -5,9 +5,11 @@ import colorful
 
 from pure import colors
 
+SUCCESS = 0
 
-def prompt_symbol(last_command_status=0):
-    symbol = colors.success('❯') if last_command_status == 0 else colors.danger('❯')
+
+def prompt_symbol(last_command_status=SUCCESS):
+    symbol = colors.primary('❯') if last_command_status == SUCCESS else colors.danger('❯')
     return symbol
 
 

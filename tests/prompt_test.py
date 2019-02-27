@@ -3,6 +3,9 @@ from pathlib import Path
 
 from pure import prompt, colors
 
+SUCCESS = 0
+FAIL = 1
+
 
 def test_contains_prompt_symbol():
     assert '❯' in prompt.prompt_symbol()
@@ -18,10 +21,8 @@ def test_contains_path():
 
 
 def test_change_prompt_when_last_command_fail():
-    success = 0
-    assert '❯' in prompt.prompt_symbol(last_command_status=success)
-    fail = 1
-    assert '❯' in prompt.prompt_symbol(last_command_status=fail)
+    assert '❯' in prompt.prompt_symbol(last_command_status=SUCCESS)
+    assert '❯' in prompt.prompt_symbol(last_command_status=FAIL)
 
 
 def test_prompt_symbol_is_colored_for_failed_command():

@@ -1,8 +1,6 @@
 import argparse
 import os
 
-import colorful
-
 from pure import colors
 
 SUCCESS = 0
@@ -24,7 +22,6 @@ def virtual_env():
 
 
 def prompt(args):
-    colorful.use_true_colors()
     print("%s\n%s%s " % (current_working_path(), virtual_env(), prompt_symbol(args.last_command_status)))
 
 

@@ -1,5 +1,7 @@
 import colorful
 
+colorful.use_true_colors()
+
 primary = colorful.purple1
 info = colorful.blue
 mute = colorful.gray

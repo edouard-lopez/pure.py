@@ -18,7 +18,13 @@ def test_prompt_symbol_is_colored_for_successful_command():
 
 def test_contains_path():
     os.chdir(str(Path('/tmp')))
-    assert '/tmp' in prompt.current_working_path()
+    assert '/tmp' in str(prompt.current_working_path())
+
+
+def test_current_working_path_color_is_muted():
+    os.chdir(str(Path('/tmp')))
+    assert str(prompt.current_working_path()) == str(colors.mute('/tmp'))
+    assert str(prompt.current_working_path()) == '\x1b[38;2;190;190;190m/tmp\x1b[39m'
 
 
 def test_change_prompt_when_last_command_fail():

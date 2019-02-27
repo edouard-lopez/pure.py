@@ -14,7 +14,7 @@ def prompt_symbol(last_command_status=SUCCESS):
 
 
 def current_working_path():
-    return os.getcwd()
+    return colors.mute(os.getcwd())
 
 
 def virtual_env():

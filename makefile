@@ -87,12 +87,12 @@ dev-pure-on:
 
 .PHONY: install-requirements
 install-requirements:
-	python3 -m pip install \
-		--user \
-		--upgrade \
+	pipenv install \
+		--dev \
 			setuptools \
 			wheel \
-			twine
+			twine \
+			keyring
 
 .PHONY: generate-package
 generate-package:

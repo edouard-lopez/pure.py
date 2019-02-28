@@ -104,12 +104,8 @@ generate-package:
 
 .PHONY: upload-package
 upload-package:
-	@printf '\e[0;35m%-6s\e[m\n' "Pypi username:"
-	@python3 -m twine upload \
-		--repository-url https://test.pypi.org/legacy/ \
-		dist/*
+	twine upload --username edouard-lopez dist/*
 
 .PHONY: setup-keyring
 setup-keyring:
-	python3 -m keyring set https://test.pypi.org/legacy/ edouard-lopez
-	# python3 -m keyring set https://upload.pypi.org/legacy/ edouard-lopez
+	 keyring set https://upload.pypi.org/legacy/ edouard-lopez

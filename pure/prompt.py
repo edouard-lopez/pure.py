@@ -5,7 +5,6 @@ import colorful
 
 
 def prompt_symbol(last_command_status=0):
-    colorful.setup(colormode=colorful.ANSI_256_COLORS)
     print(colorful.red('last_command_status'), last_command_status)
     symbol = '❯' if last_command_status == 0 else 'x❯'
     return symbol
@@ -22,6 +21,7 @@ def virtual_env():
 
 
 def prompt(args):
+    colorful.use_true_colors()
     print("%s\n%s%s " % (current_working_path(), virtual_env(), prompt_symbol(args.last_command_status)))
 
 

@@ -1,9 +1,12 @@
 import argparse
 import os
 
+import colorful
+
 
 def prompt_symbol(last_command_status=0):
-    # print(colorful.red('last_command_status'), last_command_status)
+    colorful.setup(colormode=colorful.ANSI_256_COLORS)
+    print(colorful.red('last_command_status'), last_command_status)
     symbol = '❯' if last_command_status == 0 else 'x❯'
     return symbol
 

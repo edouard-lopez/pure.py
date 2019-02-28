@@ -17,7 +17,8 @@ def current_working_path():
 
 def virtual_env():
     if 'VIRTUAL_ENV' in os.environ:
-        return os.path.basename(os.environ['VIRTUAL_ENV'])
+        virtual_env_name = os.path.basename(os.environ['VIRTUAL_ENV'])
+        return colors.mute('{} '.format(virtual_env_name))
     return ''
 
 

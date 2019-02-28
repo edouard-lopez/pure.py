@@ -48,4 +48,6 @@ def test_displays_virtual_env_invisible_when_deactivated():
 def test_displays_virtual_env_when_activated():
     os.environ['VIRTUAL_ENV'] = '/path/to/virtual/env'
 
-    assert prompt.virtual_env() == 'env'
+    assert 'env' in str(prompt.virtual_env())
+    assert str(prompt.virtual_env()) == str(colors.mute('env '))
+

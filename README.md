@@ -1,6 +1,8 @@
-# Purish [![travis-badge]][travis-link]
+# Pure [![travis-badge]][travis-link]
 
-> Pretty, minimal and fast cross-shell prompt
+> Pretty, minimal and fast prompt _for various shell_.
+
+<small>Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).</small>
 
 ## Goal
 

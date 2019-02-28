@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="example-pkg-edouard-lopez",
-    version="0.2.0",
+    version="0.3.0",
     author="Édouard Lopez",
     author_email="contact@edouard-lopez.com",
     description="Pretty, minimal and fast cross-shell prompt",

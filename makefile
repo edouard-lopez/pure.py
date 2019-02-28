@@ -87,6 +87,10 @@ dev-pure-on:
 
 .PHONY: install-requirements
 install-requirements:
+	apt install --yes \
+		python3-dbus \
+		python3-keyring \
+		python-secretstorage
 	pipenv install \
 		--dev \
 			setuptools \

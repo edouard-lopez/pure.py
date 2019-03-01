@@ -100,6 +100,7 @@ install-requirements:
 
 .PHONY: generate-package
 generate-package:
+	rm build/ dist/ pure.egg-info/ -rf 
 	python3 setup.py sdist bdist_wheel
 
 .PHONY: upload-package

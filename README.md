@@ -2,6 +2,11 @@
 
 > Pretty, minimal and fast prompt _for various shell_.
 
+<div align=center>
+  <a href="screenshot dark" target=blank><img width=440 src=https://i.imgur.com/gmS4Bqy.png alt="Pure with dark colorscheme"></a>
+  <a href="screenshot light" target=blank><img width=440 src=https://i.imgur.com/nZWx1tr.png alt="Pure with light colorscheme"></a>
+</div>
+
 Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 ## Goal

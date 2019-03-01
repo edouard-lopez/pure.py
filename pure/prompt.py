@@ -22,8 +22,12 @@ def virtual_env():
     return ''
 
 
+def layout():
+    return "\n%s\n%s%s "
+
+
 def prompt(args):
-    print("%s\n%s%s " % (current_working_path(), virtual_env(), prompt_symbol(args.last_command_status)))
+    print(layout() % (current_working_path(), virtual_env(), prompt_symbol(args.last_command_status)))
 
 
 if __name__ == "__main__":

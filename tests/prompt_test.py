@@ -51,3 +51,5 @@ def test_displays_virtual_env_when_activated():
     assert 'env' in str(prompt.virtual_env())
     assert str(prompt.virtual_env()) == str(colors.mute('env '))
 
+def test_prompt_layout():
+    assert prompt.layout() == '\n%s\n%s%s '

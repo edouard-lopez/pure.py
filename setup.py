@@ -8,7 +8,7 @@ setuptools.setup(
     version="1.2.4",
     author="Édouard Lopez",
     author_email="contact@edouard-lopez.com",
-    description="Pretty, minimal and fast prompt for various shell",
+    description="Pretty, minimal and fast prompt for various shells",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/edouard-lopez/pure",

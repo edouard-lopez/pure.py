@@ -22,7 +22,7 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 | :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :---- |
 | Excellent prompt character `❯`                                 | **✔**    |          | **✔**    |       |              |        | **✔**   |
 | Display current directory tail                                 | **✔**    |          | **✔**    |       |              |        | **✔**   |
-| Display `git` branch name                                      |        |          |        |       |              |        |       |
+| Display `git` branch name                                      | **✔**  |          | **✔**  |       |              |        | **✔** |
 | Display `*` when `git` repository is _dirty_                   |        |          |        |       |              |        |       |
 | Display `⇡` when branch is _ahead_<br>(commits to push)        |        |          |        |       |              |        |       |
 | Display `⇣` when branch is _being_<br>(commits to pull)        |        |          |        |       |              |        |       |

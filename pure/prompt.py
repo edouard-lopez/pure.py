@@ -28,16 +28,16 @@ def git_active_branch(directory):
     try:
         repo = git.Repo(directory)
         return colors.mute(str(repo.active_branch))
-    finally:
-        pass
+    except Exception:
+        return ''
 
 
 def git_is_dirty(directory):
     try:
         repo = git.Repo(directory)
         return colors.mute('*') if repo.is_dirty(untracked_files=True) else ''
-    finally:
-        pass
+    except Exception:
+        return ''
 
 
 def layout():

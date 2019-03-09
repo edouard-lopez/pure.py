@@ -3,7 +3,7 @@ import os
 
 import git
 
-from pure import colors
+import colors
 
 SUCCESS = 0
 

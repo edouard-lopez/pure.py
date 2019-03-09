@@ -67,4 +67,20 @@ def test_git_branch_name_color_is_mute():
         empty_repo = git.Repo.init(tmp_repo)
 
         assert str(prompt.git_active_branch(tmp_repo)) == str(colors.mute('master'))
-    
+
+def test_displays_when_repo_is_dirty():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        empty_repo = git.Repo.init(tmp_repo)
+        new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
+
+        assert '*' in str(prompt.git_is_dirty(tmp_repo))
+        new_file.close()
+
+def test_repo_is_dirty_color_is_mute():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        empty_repo = git.Repo.init(tmp_repo)
+        new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
+
+        assert str(prompt.git_is_dirty(tmp_repo)) == str(colors.mute('*'))
+
+        new_file.close()

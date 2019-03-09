@@ -32,6 +32,14 @@ def git_active_branch(directory):
         pass
 
 
+def git_is_dirty(directory):
+    try:
+        repo = git.Repo(directory)
+        return colors.mute('*') if repo.is_dirty(untracked_files=True) else ''
+    finally:
+        pass
+
+
 def layout():
     return "\n{current_working_path} {git_active_branch}{git_is_dirty}\n{virtual_env}{prompt_symbol} "
 

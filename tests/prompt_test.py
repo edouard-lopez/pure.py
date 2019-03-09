@@ -58,13 +58,13 @@ def test_prompt_layout():
 
 def test_contains_git_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:
-        empyt_repo = git.Repo.init(tmp_repo)
+        empty_repo = git.Repo.init(tmp_repo)
 
         assert 'master' in str(prompt.git_active_branch(tmp_repo))
         
 def test_git_branch_name_color_is_mute():
     with tempfile.TemporaryDirectory() as tmp_repo:
-        empyt_repo = git.Repo.init(tmp_repo)
+        empty_repo = git.Repo.init(tmp_repo)
 
         assert str(prompt.git_active_branch(tmp_repo)) == str(colors.mute('master'))
     

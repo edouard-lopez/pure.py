@@ -3,7 +3,7 @@ import colorful
 colorful.use_true_colors()
 
 primary = colorful.purple1
-info = colorful.blue
+info = colorful.lightBlue
 mute = colorful.gray
 success = colorful.green
 normal = colorful.darkGray

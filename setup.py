@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pure",
-    version="1.2.4",
+    version="1.2.5",
     author="Édouard Lopez",
     author_email="contact@edouard-lopez.com",
     description="Pretty, minimal and fast prompt for various shells",

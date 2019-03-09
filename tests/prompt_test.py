@@ -54,7 +54,7 @@ def test_displays_virtual_env_when_activated():
     assert str(prompt.virtual_env()) == str(colors.mute('env '))
 
 def test_prompt_layout():
-    assert prompt.layout() == '\n%s %s\n%s%s '
+    assert prompt.layout() == "\n{current_working_path} {git_active_branch}{git_is_dirty}\n{virtual_env}{prompt_symbol} "
 
 def test_contains_git_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:

@@ -33,11 +33,18 @@ def git_active_branch(directory):
 
 
 def layout():
-    return "\n%s %s\n%s%s "
+    return "\n{current_working_path} {git_active_branch}{git_is_dirty}\n{virtual_env}{prompt_symbol} "
 
 
 def prompt(args):
-    print(layout() % (current_working_path(), git_active_branch(os.getcwd()), virtual_env(), prompt_symbol(args.last_command_status)))
+    data = {
+        'current_working_path': current_working_path(), 
+        'git_active_branch': git_active_branch(os.getcwd()), 
+        'git_is_dirty': git_is_dirty(os.getcwd()), 
+        'virtual_env': virtual_env(), 
+        'prompt_symbol': prompt_symbol(args.last_command_status)
+    }
+    print(layout().format(**data))
 
 
 if __name__ == "__main__":

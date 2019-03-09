@@ -1,6 +1,8 @@
 import argparse
 import os
 
+import git
+
 from pure import colors
 
 SUCCESS = 0
@@ -22,12 +24,20 @@ def virtual_env():
     return ''
 
 
+def git_active_branch(directory):
+    try:
+        repo = git.Repo(directory)
+        return colors.mute(str(repo.active_branch))
+    finally:
+        pass
+
+
 def layout():
-    return "\n%s\n%s%s "
+    return "\n%s %s\n%s%s "
 
 
 def prompt(args):
-    print(layout() % (current_working_path(), virtual_env(), prompt_symbol(args.last_command_status)))
+    print(layout() % (current_working_path(), git_active_branch(os.getcwd()), virtual_env(), prompt_symbol(args.last_command_status)))
 
 
 if __name__ == "__main__":

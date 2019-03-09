@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
+import tempfile
 
+import git
 from pure import prompt, colors
 
 SUCCESS = 0
@@ -52,4 +54,17 @@ def test_displays_virtual_env_when_activated():
     assert str(prompt.virtual_env()) == str(colors.mute('env '))
 
 def test_prompt_layout():
-    assert prompt.layout() == '\n%s\n%s%s '
+    assert prompt.layout() == '\n%s %s\n%s%s '
+
+def test_contains_git_branch_name():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        empyt_repo = git.Repo.init(tmp_repo)
+
+        assert 'master' in str(prompt.git_active_branch(tmp_repo))
+        
+def test_git_branch_name_color_is_mute():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        empyt_repo = git.Repo.init(tmp_repo)
+
+        assert str(prompt.git_active_branch(tmp_repo)) == str(colors.mute('master'))
+    

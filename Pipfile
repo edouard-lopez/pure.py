@@ -12,6 +12,8 @@ keyring = "*"
 [packages]
 pytest = "*"
 colorful = "*"
+pure-prompt = {path = "."}
+gitpython = "*"
 
 [requires]
 python_version = "3.6"

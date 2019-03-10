@@ -26,7 +26,7 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 | Display `*` when `git` repository is _dirty_                   | **✔**  |          | **✔**  |       |              |        | **✔** |
 | Display `⇡` when branch is _ahead_<br>(commits to push)        |        |          |        |       |              |        |       |
 | Display `⇣` when branch is _being_<br>(commits to pull)        |        |          |        |       |              |        |       |
-| Change `❯` to red <br>when previous command has failed         | **✔**  |          | **✔**  |       |              |        | **✔** |
+| Change `❯` to red <br>when previous command has failed         | **✔**  | [**✖**][elv] | **✔**  |       |              |        | **✔** |
 | Update terminal title <br>with _current folder_ and _command_  |        |          |        |       |              |        |       |
 | Display _username_ and _hostname_ <br>when in an `SSH` session |        |          |        |       |              |        |       |
 | Display _duration_ <br>when command run more that `5` seconds  |        |          |        |       |              |        |       |
@@ -34,7 +34,6 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 | Fine control over colors                                       |        |          |        |       |              |        |       |
 | Right prompt control                                           |        |          |        |       |              |        |       |
 | Display `VI` mode and custom symbol <br>for non-insert mode    |        |          |        |       |              |        |       |
-
 
 ## Install
 
@@ -70,5 +69,6 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 MIT © Édouard Lopez.
 
+[elv]: https://github.com/elves/elvish/issues/799#issuecomment-471257473
 [travis-link]: https://travis-ci.com/edouard-lopez/pure "TravisCI" 
 [travis-badge]: https://travis-ci.com/edouard-lopez/pure.svg?branch=master

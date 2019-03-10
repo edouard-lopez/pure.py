@@ -39,10 +39,10 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 ⚠️ Under heavy development, use at your own risk! 💀
 
+**requirements:** `git` and `pip`.
+
     git clone git@github.com:edouard-lopez/pure.git $HOME/.pure
-<!-- 
-    pip install pure
--->
+    pip install pure --user
 
 ### Fish
 

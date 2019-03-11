@@ -7,8 +7,12 @@ FROM zshusers/zsh-${VERSION}:latest
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mZsh-%s\e[m\n\n" ${VERSION}
 
-USER zshtest
-WORKDIR /home/zshtest/.pure/
-COPY --chown=zshtest:zshtest . /home/zshtest/.pure/
+RUN yes '' | adduser --shell /usr/bin/zsh --disabled-password pure
+RUN echo '#' > /home/pure/.zshrc 
+RUN chown pure:pure /home/pure/.zshrc 
+
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 CMD ["/usr/bin/zsh","-l"]

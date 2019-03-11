@@ -7,8 +7,10 @@ FROM  mcandre/docker-ksh93:${VERSION}
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mKsh-%s\e[m\n\n" ${VERSION}
 
-USER root
-WORKDIR /home/root/.pure/
-COPY --chown=root:root . /home/root/.pure/
+RUN yes '' | adduser --shell /bin/ksh --disabled-password pure
+
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 CMD ["/bin/ksh"]

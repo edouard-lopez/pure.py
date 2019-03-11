@@ -7,8 +7,11 @@ FROM theelves/elvish:${VERSION}
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mElvish-%s\e[m\n\n" ${VERSION}
 
-USER elf
-WORKDIR /home/elf/.pure/
-COPY --chown=elf:elf . /home/elf/.pure/
+USER root
+RUN adduser --shell /bin/elvish -D pure
+
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 CMD ["/bin/elvish"]

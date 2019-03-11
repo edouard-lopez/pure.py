@@ -13,9 +13,10 @@ RUN apk add \
     --no-cache \
     coreutils
 
-USER nemo
-WORKDIR /home/nemo/.pure/
-COPY --chown=nemo:nemo . ~/.pure/
+RUN adduser --shell /usr/bin/fish -D pure
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 ENTRYPOINT ["fish", "-c"]
 CMD ["echo $fish_config"]

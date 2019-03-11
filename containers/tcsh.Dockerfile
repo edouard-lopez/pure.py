@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install --yes tcsh
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mTcsh-%s\e[m\n\n" ${VERSION}
 
-USER root
-WORKDIR /home/root/.pure/
-COPY --chown=root:root . /home/root/.pure/
-
+RUN adduser --shell /bin/tcsh -D pure
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 CMD ["/bin/tcsh"]

@@ -7,8 +7,9 @@ FROM bash:${VERSION}
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mBash-%s\e[m\n\n" ${VERSION}
 
-USER root
-WORKDIR /home/root/.pure/
-COPY --chown=root:root . /home/root/.pure/
+RUN adduser --shell /bin/bash -D pure
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 CMD ["bash"]

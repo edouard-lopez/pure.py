@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install --yes tcsh
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mTcsh-%s\e[m\n\n" ${VERSION}
 
-RUN adduser --shell /bin/tcsh -D pure
+RUN yes '' | adduser --shell /bin/tcsh --disabled-password pure
 USER pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure . /home/pure/.pure/

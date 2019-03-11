@@ -7,8 +7,9 @@ FROM mcr.microsoft.com/powershell:${VERSION}
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mPowershell-%s\e[m\n\n" ${VERSION}
 
-USER root
-WORKDIR /home/root/.pure/
-COPY --chown=root:root . /home/root/.pure/
+RUN adduser --shell /usr/bin/pwsh -D pure
+USER pure
+WORKDIR /home/pure/.pure/
+COPY --chown=pure:pure . /home/pure/.pure/
 
 CMD [ "pwsh" ]

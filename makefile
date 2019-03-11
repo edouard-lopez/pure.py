@@ -4,6 +4,11 @@
 SHELL := /bin/bash
 INTERACTIVE=true
 
+
+		
+.PHONY: default
+default: tests
+
 .PHONY: tests
 tests:
 	clear
@@ -41,8 +46,8 @@ build-pure-on-zsh:
 build-pure-on:
 	docker build \
 		--file ./containers/${SHELL}.Dockerfile \
-		--build-arg ${ARGS} \
 		--tag=pure-on-${SHELL}-${VERSION} \
+		--build-arg ${ARGS} \
 		./
 
 

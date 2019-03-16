@@ -16,5 +16,6 @@ RUN adduser --shell /bin/elvish -D pure
 USER pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure . /home/pure/.pure/
+RUN elvish $HOME/.pure/install/configure.elv
 
 CMD ["/bin/elvish"]

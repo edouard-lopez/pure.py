@@ -46,31 +46,19 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 ### Fish
 
-    cp $HOME/.pure/config/fish_prompt.fish $fish_config/functions/
-    echo 'set --global --export PURE_EXECUTABLE_PATH $HOME/.pure/' >> $fish_config/config.fish
-    exec fish
+    fish $HOME/.pure/install/configure.fish
 
 ### Zsh
 
-    cp $HOME/.pure/config/prompt.zsh $HOME/.zsh/
-    echo 'export PURE_EXECUTABLE_PATH=$HOME/.pure/' >> $HOME/.zshrc
-    echo 'source $HOME/.zsh/prompt.zsh' >> $HOME/.zshrc
-    exec zsh
+    zsh $HOME/.pure/install/configure.zsh
 
 ### Bash
 
-    mkdir ~/.bash/
-    cp $HOME/.pure/config/prompt.bash $HOME/.bash/
-    echo 'export PURE_EXECUTABLE_PATH=$HOME/.pure/' >> $HOME/.bashrc
-    echo 'source $HOME/.bash/prompt.bash' >> $HOME/.bashrc
-    exec bash
+    bash $HOME/.pure/install/configure.bash
 
 ### Elvish
 
-    cp $E:HOME/.pure/config/prompt.elv $E:HOME/.elvish/lib/pure.elv
-    echo '$PURE_EXECUTABLE_PATH = $E:HOME/.pure/' >> $E:HOME/.elvish/rc.elv
-    echo 'use pure' >> $E:HOME/.elvish/rc.elv
-    exec elvish
+    elvish $HOME/.pure/install/configure.elv
 
 ## License
 

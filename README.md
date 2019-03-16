@@ -67,9 +67,9 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 ### Elvish
 
-    cp $HOME/.pure/config/prompt.elv $HOME/.elvish/lib/pure.elv
-    echo 'E:PURE_EXECUTABLE_PATH = $HOME/.pure/' >> $HOME/.elvish/conf.elv
-    echo 'use pure' >> $HOME/.elvish/rc.elv
+    cp $E:HOME/.pure/config/prompt.elv $E:HOME/.elvish/lib/pure.elv
+    echo '$PURE_EXECUTABLE_PATH = $E:HOME/.pure/' >> $E:HOME/.elvish/rc.elv
+    echo 'use pure' >> $E:HOME/.elvish/rc.elv
     exec elvish
 
 ## License

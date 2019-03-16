@@ -7,7 +7,10 @@ FROM bash:${VERSION}
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mBash-%s\e[m\n\n" ${VERSION}
 
+USER root
+RUN apk add --no-cache python3
 RUN adduser --shell /bin/bash -D pure
+
 USER pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure . /home/pure/.pure/

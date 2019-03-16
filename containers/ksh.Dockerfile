@@ -7,6 +7,8 @@ FROM  mcandre/docker-ksh93:latest
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mKsh-%s\e[m\n\n" ${VERSION}
 
+USER root
+RUN apt-get update && apt-get install --yes python3
 RUN yes '' | adduser --shell /bin/ksh --disabled-password pure
 
 USER pure

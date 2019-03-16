@@ -7,13 +7,10 @@ FROM ohmyfish/fish:${VERSION}
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mFish-%s\e[m\n\n" ${VERSION}
 
-# Install dependencies
 USER root
-RUN apk add \
-    --no-cache \
-    coreutils
-
+RUN apk add --no-cache coreutils python3
 RUN adduser --shell /usr/bin/fish -D pure
+
 USER pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure . /home/pure/.pure/

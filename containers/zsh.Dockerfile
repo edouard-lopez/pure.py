@@ -7,6 +7,8 @@ FROM zshusers/zsh-${VERSION}:latest
 ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mZsh-%s\e[m\n\n" ${VERSION}
 
+USER root
+RUN install_packages python3
 RUN yes '' | adduser --shell /usr/bin/zsh --disabled-password pure
 RUN echo '#' > /home/pure/.zshrc 
 RUN chown pure:pure /home/pure/.zshrc 

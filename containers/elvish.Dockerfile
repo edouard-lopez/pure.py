@@ -8,6 +8,9 @@ ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mElvish-%s\e[m\n\n" ${VERSION}
 
 USER root
+RUN apk add \
+    --no-cache \
+    python3
 RUN adduser --shell /bin/elvish -D pure
 
 USER pure

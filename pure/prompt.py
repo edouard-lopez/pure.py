@@ -57,6 +57,6 @@ def prompt(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process shell variables.')
-    parser.add_argument('last_command_status', type=int, help='last command\'s exit status', default=SUCCESS)
+    parser.add_argument('--last-command-status', dest='last_command_status', type=int, help='last command\'s exit status')
 
     prompt(parser.parse_args())

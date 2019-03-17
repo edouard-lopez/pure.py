@@ -93,7 +93,7 @@ dev-pure-on:
 		--rm \
 		--interactive \
 		--tty \
-		--volume=$$PWD:/home/nemo/.pure/ \
+		--volume=$$PWD:/home/pure/.pure/ \
 		pure-on-${TARGET}-${VERSION}
 
 

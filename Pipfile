@@ -8,11 +8,11 @@ setuptools = "*"
 wheel = "*"
 twine = "*"
 keyring = "*"
+pure = {editable = true,path = "."}
 
 [packages]
 pytest = "*"
 colorful = "*"
-pure-prompt = {path = "."}
 gitpython = "*"
 
 [requires]

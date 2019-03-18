@@ -52,7 +52,7 @@ def prompt(args):
         'virtual_env': virtual_env(), 
         'prompt_symbol': prompt_symbol(args.last_command_status)
     }
-    print(layout().format(**data))
+    print(layout().format(**data), end='')
 
 
 if __name__ == "__main__":

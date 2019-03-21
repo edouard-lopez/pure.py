@@ -10,7 +10,7 @@ def layout():
 
 def prompt(args):
     data = {
-        'current_working_path': current_working_path.current_working_path(),
+        'current_working_path': fetch(current_working_path.segment()),
         'git_active_branch': repository.active_branch(os.getcwd()),
         'git_is_dirty': repository.is_dirty(os.getcwd()),
         'virtual_env': virtual_env.name(),

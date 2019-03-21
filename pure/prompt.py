@@ -1,14 +1,7 @@
 import argparse
 import os
 
-from pure import colors, repository, virtual_env, current_working_path
-
-SUCCESS = 0
-
-
-def prompt_symbol(last_command_status=SUCCESS):
-    symbol = colors.primary('❯') if last_command_status == SUCCESS else colors.danger('❯')
-    return symbol
+from pure import repository, virtual_env, current_working_path, symbol
 
 
 def layout():
@@ -21,7 +14,7 @@ def prompt(args):
         'git_active_branch': repository.active_branch(os.getcwd()),
         'git_is_dirty': repository.is_dirty(os.getcwd()),
         'virtual_env': virtual_env.name(),
-        'prompt_symbol': prompt_symbol(args.last_command_status)
+        'prompt_symbol': symbol.prompt(args.last_command_status)
     }
     print(layout().format(**data), end='')
 

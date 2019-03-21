@@ -37,21 +37,6 @@ def test_prompt_symbol_is_colored_for_failed_command():
     assert str(prompt.prompt_symbol(last_command_status=FAIL)) == '\x1b[38;2;205;0;0m❯\x1b[39m'
 
 
-def test_displays_virtual_env_invisible_when_deactivated():
-    os.unsetenv('VIRTUAL_ENV')
-    if 'VIRTUAL_ENV' in os.environ:  # when running tests in a virtualenv
-        del os.environ['VIRTUAL_ENV']
-
-    assert prompt.virtual_env() == ''
-
-
-def test_displays_virtual_env_when_activated():
-    os.environ['VIRTUAL_ENV'] = '/path/to/virtual/env'
-
-    assert 'env' in str(prompt.virtual_env())
-    assert str(prompt.virtual_env()) == str(colors.mute('env '))
-
-
 def test_prompt_layout():
     assert prompt.layout() == "\n{current_working_path} {git_active_branch}{git_is_dirty}\n{virtual_env}{prompt_symbol} "
 

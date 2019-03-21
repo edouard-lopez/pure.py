@@ -19,6 +19,10 @@ def prompt(args):
     print(layout().format(**data), end='')
 
 
+def fetch(segment):
+    return segment.get('style')(segment.get('text'))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process shell variables.')
     parser.add_argument('--last-command-status', dest='last_command_status', type=int,

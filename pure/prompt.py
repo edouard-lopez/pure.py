@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from pure import colors, repository, virtual_env
+from pure import colors, repository, virtual_env, current_working_path
 
 SUCCESS = 0
 
@@ -11,17 +11,13 @@ def prompt_symbol(last_command_status=SUCCESS):
     return symbol
 
 
-def current_working_path():
-    return colors.info(os.getcwd())
-
-
 def layout():
     return "\n{current_working_path} {git_active_branch}{git_is_dirty}\n{virtual_env}{prompt_symbol} "
 
 
 def prompt(args):
     data = {
-        'current_working_path': current_working_path(),
+        'current_working_path': current_working_path.current_working_path(),
         'git_active_branch': repository.active_branch(os.getcwd()),
         'git_is_dirty': repository.is_dirty(os.getcwd()),
         'virtual_env': virtual_env.name(),

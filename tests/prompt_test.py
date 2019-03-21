@@ -3,7 +3,8 @@ from pathlib import Path
 import tempfile
 
 import git
-from pure import prompt, colors
+
+from pure import prompt, colors, repository
 
 SUCCESS = 0
 FAIL = 1
@@ -60,20 +61,20 @@ def test_contains_git_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
 
-        assert 'master' in str(prompt.git_active_branch(tmp_repo))
+        assert 'master' in str(repository.active_branch(tmp_repo))
         
 def test_git_branch_name_color_is_mute():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
 
-        assert str(prompt.git_active_branch(tmp_repo)) == str(colors.mute('master'))
+        assert str(repository.active_branch(tmp_repo)) == str(colors.mute('master'))
 
 def test_displays_when_repo_is_dirty():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
-        assert '*' in str(prompt.git_is_dirty(tmp_repo))
+        assert '*' in str(repository.is_dirty(tmp_repo))
         new_file.close()
 
 def test_repo_is_dirty_color_is_mute():
@@ -81,6 +82,6 @@ def test_repo_is_dirty_color_is_mute():
         empty_repo = git.Repo.init(tmp_repo)
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
-        assert str(prompt.git_is_dirty(tmp_repo)) == str(colors.mute('*'))
+        assert str(repository.is_dirty(tmp_repo)) == str(colors.mute('*'))
 
         new_file.close()

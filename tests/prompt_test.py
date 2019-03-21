@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import tempfile
+from pathlib import Path
 
 import git
 
@@ -42,7 +42,7 @@ def test_prompt_symbol_is_colored_for_failed_command():
 
 def test_displays_virtual_env_invisible_when_deactivated():
     os.unsetenv('VIRTUAL_ENV')
-    if 'VIRTUAL_ENV' in os.environ: # when running tests in a virtualenv
+    if 'VIRTUAL_ENV' in os.environ:  # when running tests in a virtualenv
         del os.environ['VIRTUAL_ENV']
 
     assert prompt.virtual_env() == ''
@@ -54,20 +54,24 @@ def test_displays_virtual_env_when_activated():
     assert 'env' in str(prompt.virtual_env())
     assert str(prompt.virtual_env()) == str(colors.mute('env '))
 
+
 def test_prompt_layout():
     assert prompt.layout() == "\n{current_working_path} {git_active_branch}{git_is_dirty}\n{virtual_env}{prompt_symbol} "
+
 
 def test_contains_git_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
 
         assert 'master' in str(repository.active_branch(tmp_repo))
-        
+
+
 def test_git_branch_name_color_is_mute():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
 
         assert str(repository.active_branch(tmp_repo)) == str(colors.mute('master'))
+
 
 def test_displays_when_repo_is_dirty():
     with tempfile.TemporaryDirectory() as tmp_repo:
@@ -76,6 +80,7 @@ def test_displays_when_repo_is_dirty():
 
         assert '*' in str(repository.is_dirty(tmp_repo))
         new_file.close()
+
 
 def test_repo_is_dirty_color_is_mute():
     with tempfile.TemporaryDirectory() as tmp_repo:

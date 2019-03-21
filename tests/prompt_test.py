@@ -1,6 +1,3 @@
-import os
-from pathlib import Path
-
 from pure import prompt, colors
 
 SUCCESS = 0
@@ -14,17 +11,6 @@ def test_contains_prompt_symbol():
 def test_prompt_symbol_is_colored_for_successful_command():
     assert str(prompt.prompt_symbol()) == str(colors.primary('❯'))
     assert str(prompt.prompt_symbol()) == '\x1b[38;2;155;48;255m❯\x1b[39m'
-
-
-def test_contains_path():
-    os.chdir(str(Path('/tmp')))
-    assert '/tmp' in str(prompt.current_working_path())
-
-
-def test_current_working_path_color_is_info():
-    os.chdir(str(Path('/tmp')))
-    assert str(prompt.current_working_path()) == str(colors.info('/tmp'))
-    assert str(prompt.current_working_path()) == '\x1b[38;2;173;216;230m/tmp\x1b[39m'
 
 
 def test_change_prompt_when_last_command_fail():

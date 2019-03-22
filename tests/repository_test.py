@@ -35,7 +35,7 @@ def test_repository_active_branch_name_color_is_mute():
 
 def test_dummy_directory_is_not_dirty():
     with tempfile.TemporaryDirectory() as tmp_repo:
-        assert repository.ActiveBranch(tmp_repo).raw() == _NOTHING
+        assert repository.IsDirty(tmp_repo).raw() == _NOTHING
 
 
 def test_repository_is_dirty_contains_raw_symbol():

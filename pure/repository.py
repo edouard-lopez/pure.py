@@ -25,9 +25,20 @@ class ActiveBranch:
         }
 
 
-def is_dirty(directory):
-    try:
-        repo = git.Repo(directory)
-        return colors.mute('*') if repo.is_dirty(untracked_files=True) else ''
-    except Exception:
-        return ''
+class IsDirty(object):
+    repo = None
+
+    def __init__(self, directory):
+        try:
+            self.repo = git.Repo(directory)
+        except Exception:
+            self.repo = {}
+
+    def raw(self):
+        return '*' if self.repo.is_dirty(untracked_files=True) else ''
+
+    def segment(self):
+        return {
+            'text': self.raw(),
+            'style': colors.mute
+        }

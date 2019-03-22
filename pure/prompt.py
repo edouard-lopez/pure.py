@@ -12,7 +12,7 @@ def prompt(args):
     data = {
         'current_working_path': fetch(current_working_path.segment()),
         'git_active_branch': fetch(repository.ActiveBranch(os.getcwd()).segment()),
-        'git_is_dirty': repository.is_dirty(os.getcwd()),
+        'git_is_dirty': fetch(repository.IsDirty(os.getcwd()).segment()),
         'virtual_env': virtual_env.name(),
         'prompt_symbol': symbol.prompt(args.last_command_status)
     }

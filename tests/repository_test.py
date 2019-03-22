@@ -31,25 +31,39 @@ def test_git_branch_name_color_is_mute():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
 
-        assert str(fetch(repository.ActiveBranch(tmp_repo).segment())) == str(colors.mute('master'))
+
+def test_dummy_directory_is_not_dirty():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        assert repository.ActiveBranch(tmp_repo).raw() == ''
 
 
-
-
-def test_displays_when_repo_is_dirty():
+def test_repository_is_dirty_contains_raw_symbol():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
-        assert '*' in str(repository.is_dirty(tmp_repo))
+        assert repository.IsDirty(tmp_repo).raw() == '*'
+
         new_file.close()
 
 
-def test_repo_is_dirty_color_is_mute():
+def test_repository_is_dirty_segment_contains_text_and_style():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
-        assert str(repository.is_dirty(tmp_repo)) == str(colors.mute('*'))
+        segment = repository.IsDirty(tmp_repo).segment()
+        assert segment == {'text': '*', 'style': colors.mute}
+
+        new_file.close()
+
+
+def test_repository_dirty_symbol_color_is_mute():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        empty_repo = git.Repo.init(tmp_repo)
+        new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
+
+        segment = repository.IsDirty(tmp_repo).segment()
+        assert str(fetch(segment)) == str(colors.mute('*'))
 
         new_file.close()

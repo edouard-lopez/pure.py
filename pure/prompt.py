@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from pure import repository, virtual_env, current_working_path, symbol
+from pure import current_working_path, repository, symbol, virtual_env
 
 
 def layout():

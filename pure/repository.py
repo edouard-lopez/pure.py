@@ -1,8 +1,6 @@
 import git
 
-from pure import colors
-
-_NOTHING = ''
+from pure import colors, constants
 
 
 class ActiveBranch:
@@ -18,7 +16,7 @@ class ActiveBranch:
         if hasattr(self.repo, 'active_branch'):
             return str(self.repo.active_branch)
         else:
-            return _NOTHING
+            return constants.NOTHING
 
     def segment(self):
         return {
@@ -38,9 +36,9 @@ class IsDirty(object):
 
     def raw(self):
         if hasattr(self.repo, 'is_dirty'):
-            return '*' if self.repo.is_dirty(untracked_files=True) else _NOTHING
+            return '*' if self.repo.is_dirty(untracked_files=True) else constants.NOTHING
         else:
-            return _NOTHING
+            return constants.NOTHING
 
     def segment(self):
         return {

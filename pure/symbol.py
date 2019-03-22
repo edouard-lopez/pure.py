@@ -1,8 +1,6 @@
-from pure import colors
-
-SUCCESS = 0
+from pure import colors, constants
 
 
-def prompt(last_command_status=SUCCESS):
-    symbol = colors.primary('❯') if last_command_status == SUCCESS else colors.danger('❯')
+def prompt(last_command_status=constants.SUCCESS):
+    symbol = colors.primary('❯') if last_command_status == constants.SUCCESS else colors.danger('❯')
     return symbol

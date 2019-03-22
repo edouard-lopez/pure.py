@@ -2,15 +2,13 @@ import tempfile
 
 import git
 
-from pure import colors, repository
+from pure import colors, repository, constants
 from pure.prompt import fetch
-
-_NOTHING = ''
 
 
 def test_dummy_directory_has_no_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:
-        assert repository.ActiveBranch(tmp_repo).raw() == _NOTHING
+        assert repository.ActiveBranch(tmp_repo).raw() == constants.NOTHING
 
 
 def test_repository_active_branch_contains_raw_git_branch_name():
@@ -35,7 +33,7 @@ def test_repository_active_branch_name_color_is_mute():
 
 def test_dummy_directory_is_not_dirty():
     with tempfile.TemporaryDirectory() as tmp_repo:
-        assert repository.IsDirty(tmp_repo).raw() == _NOTHING
+        assert repository.IsDirty(tmp_repo).raw() == constants.NOTHING
 
 
 def test_repository_is_dirty_contains_raw_symbol():

@@ -1,13 +1,13 @@
 import os
 
 from pure import colors
-from pure.config import _NOTHING
+from pure import constants
 
 
 def raw():
     if 'VIRTUAL_ENV' in os.environ:
         return os.path.basename(os.environ['VIRTUAL_ENV'])
-    return _NOTHING
+    return constants.NOTHING
 
 
 def segment():

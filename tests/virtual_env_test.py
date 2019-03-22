@@ -1,8 +1,6 @@
 import os
 
-from pure import colors, virtual_env
-
-_NOTHING = ''
+from pure import colors, virtual_env, constants
 
 
 def test_virtual_env_raw_name_is_empty_when_deactivated():
@@ -10,7 +8,7 @@ def test_virtual_env_raw_name_is_empty_when_deactivated():
     if 'VIRTUAL_ENV' in os.environ:  # when running tests in a virtualenv
         del os.environ['VIRTUAL_ENV']
 
-    assert virtual_env.raw() == _NOTHING
+    assert virtual_env.raw() == constants.NOTHING
 
 
 def test_virtual_env_segment_text_is_empty_when_deactivated():

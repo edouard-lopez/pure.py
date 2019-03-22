@@ -1,10 +1,17 @@
 import os
 
 from pure import colors
+from pure.config import _NOTHING
 
 
-def name():
+def raw():
     if 'VIRTUAL_ENV' in os.environ:
-        virtual_env_name = os.path.basename(os.environ['VIRTUAL_ENV'])
-        return colors.mute('{} '.format(virtual_env_name))
-    return ''
+        return os.path.basename(os.environ['VIRTUAL_ENV'])
+    return _NOTHING
+
+
+def segment():
+    return {
+        'text': raw(),
+        'style': colors.mute
+    }

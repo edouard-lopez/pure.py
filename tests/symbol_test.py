@@ -1,7 +1,4 @@
-from pure import symbol, colors
-
-SUCCESS = 0
-FAIL = 1
+from pure import symbol, colors, constants
 
 
 def test_contains_prompt_symbol():
@@ -14,10 +11,10 @@ def test_prompt_symbol_is_colored_for_successful_command():
 
 
 def test_change_prompt_when_last_command_fail():
-    assert '❯' in symbol.prompt(last_command_status=SUCCESS)
-    assert '❯' in symbol.prompt(last_command_status=FAIL)
+    assert '❯' in symbol.prompt(last_command_status=constants.SUCCESS)
+    assert '❯' in symbol.prompt(last_command_status=constants.FAIL)
 
 
 def test_prompt_symbol_is_colored_for_failed_command():
-    assert str(symbol.prompt(last_command_status=FAIL)) == str(colors.danger('❯'))
-    assert str(symbol.prompt(last_command_status=FAIL)) == '\x1b[38;2;205;0;0m❯\x1b[39m'
+    assert str(symbol.prompt(last_command_status=constants.FAIL)) == str(colors.danger('❯'))
+    assert str(symbol.prompt(last_command_status=constants.FAIL)) == '\x1b[38;2;205;0;0m❯\x1b[39m'

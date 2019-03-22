@@ -11,7 +11,7 @@ def test_current_working_path_raw():
     assert '/tmp' == current_working_path.raw()
 
 
-def test_current_working_path_segment_contains_data_and_style():
+def test_current_working_path_segment_contains_text_and_style():
     os.chdir(str(Path('/tmp')))
 
     segment = current_working_path.segment()

@@ -2,6 +2,8 @@ import git
 
 from pure import colors
 
+_NOTHING = ''
+
 
 class ActiveBranch:
     repo = None
@@ -13,10 +15,10 @@ class ActiveBranch:
             self.repo = {}
 
     def raw(self):
-        try:
+        if hasattr(self.repo, 'active_branch'):
             return str(self.repo.active_branch)
-        except AttributeError:
-            return ''
+        else:
+            return _NOTHING
 
     def segment(self):
         return {

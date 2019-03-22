@@ -1,31 +1,31 @@
-from pure import symbol, colors, constants
+from pure import prompt_symbol, colors, constants
 
 
 def test_prompt_symbol_raw_contains_prompt_symbol():
-    assert '❯' in symbol.raw()
+    assert '❯' in prompt_symbol.raw()
 
 
 def test_prompt_symbol_segment_contains_text_and_style():
-    segment = symbol.segment()
+    segment = prompt_symbol.segment()
 
     assert segment == {'text': '❯', 'style': colors.primary}
 
 
 def test_prompt_symbol_style_is_primary_color_when_last_command_succeed():
-    assert symbol.style(last_command_status=constants.SUCCESS) == colors.primary
+    assert prompt_symbol.style(last_command_status=constants.SUCCESS) == colors.primary
 
 
 def test_prompt_symbol_segment_contains_text_and_primary_color_when_last_command_succeed():
-    segment = symbol.segment(last_command_status=constants.SUCCESS)
+    segment = prompt_symbol.segment(last_command_status=constants.SUCCESS)
 
     assert segment == {'text': '❯', 'style': colors.primary}
 
 
 def test_prompt_symbol_style_is_danger_color_when_last_command_failed():
-    assert symbol.style(last_command_status=constants.FAIL) == colors.danger
+    assert prompt_symbol.style(last_command_status=constants.FAIL) == colors.danger
 
 
 def test_prompt_symbol_segment_contains_text_and_danger_color_when_last_command_failed():
-    segment = symbol.segment(last_command_status=constants.FAIL)
+    segment = prompt_symbol.segment(last_command_status=constants.FAIL)
 
     assert segment == {'text': '❯', 'style': colors.danger}

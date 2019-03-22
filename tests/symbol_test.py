@@ -1,20 +1,31 @@
 from pure import symbol, colors, constants
 
 
-def test_contains_prompt_symbol():
-    assert '❯' in symbol.prompt()
+def test_prompt_symbol_raw_contains_prompt_symbol():
+    assert '❯' in symbol.raw()
 
 
-def test_prompt_symbol_is_colored_for_successful_command():
-    assert str(symbol.prompt()) == str(colors.primary('❯'))
-    assert str(symbol.prompt()) == '\x1b[38;2;155;48;255m❯\x1b[39m'
+def test_prompt_symbol_segment_contains_text_and_style():
+    segment = symbol.segment()
+
+    assert segment == {'text': '❯', 'style': colors.primary}
 
 
-def test_change_prompt_when_last_command_fail():
-    assert '❯' in symbol.prompt(last_command_status=constants.SUCCESS)
-    assert '❯' in symbol.prompt(last_command_status=constants.FAIL)
+def test_prompt_symbol_style_is_primary_color_when_last_command_succeed():
+    assert symbol.style(last_command_status=constants.SUCCESS) == colors.primary
 
 
-def test_prompt_symbol_is_colored_for_failed_command():
-    assert str(symbol.prompt(last_command_status=constants.FAIL)) == str(colors.danger('❯'))
-    assert str(symbol.prompt(last_command_status=constants.FAIL)) == '\x1b[38;2;205;0;0m❯\x1b[39m'
+def test_prompt_symbol_segment_contains_text_and_primary_color_when_last_command_succeed():
+    segment = symbol.segment(last_command_status=constants.SUCCESS)
+
+    assert segment == {'text': '❯', 'style': colors.primary}
+
+
+def test_prompt_symbol_style_is_danger_color_when_last_command_failed():
+    assert symbol.style(last_command_status=constants.FAIL) == colors.danger
+
+
+def test_prompt_symbol_segment_contains_text_and_danger_color_when_last_command_failed():
+    segment = symbol.segment(last_command_status=constants.FAIL)
+
+    assert segment == {'text': '❯', 'style': colors.danger}

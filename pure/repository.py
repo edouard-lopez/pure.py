@@ -3,12 +3,26 @@ import git
 from pure import colors
 
 
-def active_branch(directory):
-    try:
-        repo = git.Repo(directory)
-        return colors.mute(str(repo.active_branch))
-    except Exception:
-        return ''
+class ActiveBranch:
+    repo = None
+
+    def __init__(self, directory):
+        try:
+            self.repo = git.Repo(directory)
+        except Exception:
+            self.repo = {}
+
+    def raw(self):
+        try:
+            return str(self.repo.active_branch)
+        except AttributeError:
+            return ''
+
+    def segment(self):
+        return {
+            'text': self.raw(),
+            'style': colors.mute
+        }
 
 
 def is_dirty(directory):

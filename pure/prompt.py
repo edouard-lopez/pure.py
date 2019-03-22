@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from pure import current_working_path, repository, symbol, virtual_env
+from pure import current_working_path, repository, prompt_symbol, virtual_env
 
 
 def layout():
@@ -14,7 +14,7 @@ def prompt(args):
         'git_active_branch': fetch(repository.ActiveBranch(os.getcwd()).segment()),
         'git_is_dirty': fetch(repository.IsDirty(os.getcwd()).segment()),
         'virtual_env': fetch(virtual_env.segment()),
-        'prompt_symbol': fetch(symbol.segment(args.last_command_status))
+        'prompt_symbol': fetch(prompt_symbol.segment(args.last_command_status))
     }
     print(layout().format(**data), end='')
 

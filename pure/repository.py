@@ -37,7 +37,10 @@ class IsDirty(object):
             self.repo = {}
 
     def raw(self):
-        return '*' if self.repo.is_dirty(untracked_files=True) else ''
+        if hasattr(self.repo, 'is_dirty'):
+            return '*' if self.repo.is_dirty(untracked_files=True) else _NOTHING
+        else:
+            return _NOTHING
 
     def segment(self):
         return {

@@ -10,6 +10,7 @@ FISH_VERSION := 3.0.0
 KSH_VERSION := 2012-08-01
 PWSH_VERSION := 6.1.3-alpine-3.8
 TCSH_VERSION := 6.20.00
+XONSH_VERSION := latest
 ZSH_VERSION := 5.4.2-r1
 
 		
@@ -44,6 +45,10 @@ build-pure-on-pwsh:
 .PHONY: build-pure-on-tcsh
 build-pure-on-tcsh:
 	$(MAKE) build-pure-on TARGET=tcsh VERSION="${TCSH_VERSION}" ARGS="VERSION=${TCSH_VERSION}"
+
+.PHONY: build-pure-on-xonsh
+build-pure-on-xonsh:
+	$(MAKE) build-pure-on TARGET=xonsh VERSION="${XONSH_VERSION}" ARGS="VERSION=${XONSH_VERSION}"
 
 .PHONY: build-pure-on-zsh
 build-pure-on-zsh:
@@ -81,6 +86,10 @@ dev-pure-on-pwsh:
 .PHONY: dev-pure-on-tcsh
 dev-pure-on-tcsh:
 	$(MAKE) dev-pure-on TARGET=tcsh VERSION="${TCSH_VERSION}" ARGS="VERSION=${TCSH_VERSION}"
+
+.PHONY: dev-pure-on-xonsh
+dev-pure-on-xonsh:
+	$(MAKE) dev-pure-on TARGET=xonsh VERSION="${XONSH_VERSION}" ARGS="VERSION=${XONSH_VERSION}"
 
 .PHONY: dev-pure-on-zsh
 dev-pure-on-zsh:

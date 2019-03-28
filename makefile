@@ -22,88 +22,38 @@ tests:
 	clear
 	pytest --verbose tests/
 
-.PHONY: build-pure-on-bash
-build-pure-on-bash:
-	$(MAKE) build-pure-on TARGET=bash VERSION="${BASH_VERSION}" ARGS="VERSION=${BASH_VERSION}"
-
-.PHONY: build-pure-on-elvish
-build-pure-on-elvish:
-	$(MAKE) build-pure-on TARGET=elvish VERSION="${ELVISH_VERSION}" ARGS="VERSION=${ELVISH_VERSION}"
-
-.PHONY: build-pure-on-fish
-build-pure-on-fish:
-	$(MAKE) build-pure-on TARGET=fish VERSION="${FISH_VERSION}" ARGS="VERSION=${FISH_VERSION}"
-
-.PHONY: build-pure-on-ksh
-build-pure-on-ksh:
-	$(MAKE) build-pure-on TARGET=ksh VERSION="${KSH_VERSION}" ARGS="VERSION=${KSH_VERSION}"
-
-.PHONY: build-pure-on-pwsh
-build-pure-on-pwsh:
-	$(MAKE) build-pure-on TARGET=pwsh VERSION="${PWSH_VERSION}" ARGS="VERSION=${PWSH_VERSION}"
-
-.PHONY: build-pure-on-tcsh
-build-pure-on-tcsh:
-	$(MAKE) build-pure-on TARGET=tcsh VERSION="${TCSH_VERSION}" ARGS="VERSION=${TCSH_VERSION}"
-
-.PHONY: build-pure-on-xonsh
-build-pure-on-xonsh:
-	$(MAKE) build-pure-on TARGET=xonsh VERSION="${XONSH_VERSION}" ARGS="VERSION=${XONSH_VERSION}"
-
-.PHONY: build-pure-on-zsh
-build-pure-on-zsh:
-	$(MAKE) build-pure-on TARGET=zsh VERSION="${ZSH_VERSION}" ARGS="VERSION=${ZSH_VERSION}"
+build-pure-on-%:
+	@$(MAKE) --silent build-pure-on shell=$* > /dev/null
 
 .PHONY: build-pure-on
 build-pure-on:
+	@$(MAKE) --silent build-on shell=${shell} VERSION="$${shell^^}_VERSION" 
+
+.PHONY: build-on
+build-on:
 	docker build \
-		--file ./containers/${TARGET}.Dockerfile \
-		--tag=pure-on-${TARGET}-${VERSION} \
-		--build-arg ${ARGS} \
+		--file ./containers/${shell}.Dockerfile \
+		--tag=pure-on-${shell}-${${VERSION}} \
+		--build-arg ARGS="VERSION=${${VERSION}}" \
 		./
 
-
-.PHONY: dev-pure-on-bash
-dev-pure-on-bash:
-	$(MAKE) dev-pure-on TARGET=bash VERSION="${BASH_VERSION}" ARGS="VERSION=${BASH_VERSION}"
-
-.PHONY: dev-pure-on-elvish
-dev-pure-on-elvish:
-	$(MAKE) dev-pure-on TARGET=elvish VERSION="${ELVISH_VERSION}" ARGS="VERSION=${ELVISH_VERSION}"
-
-.PHONY: dev-pure-on-fish
-dev-pure-on-fish:
-	$(MAKE) dev-pure-on TARGET=fish VERSION="${FISH_VERSION}" ARGS="VERSION=${FISH_VERSION}"
-
-.PHONY: dev-pure-on-ksh
-dev-pure-on-ksh:
-	$(MAKE) dev-pure-on TARGET=ksh VERSION="${KSH_VERSION}" ARGS="VERSION=${KSH_VERSION}"
-
-.PHONY: dev-pure-on-pwsh
-dev-pure-on-pwsh:
-	$(MAKE) dev-pure-on TARGET=pwsh VERSION="${PWSH_VERSION}" ARGS="VERSION=${PWSH_VERSION}"
-
-.PHONY: dev-pure-on-tcsh
-dev-pure-on-tcsh:
-	$(MAKE) dev-pure-on TARGET=tcsh VERSION="${TCSH_VERSION}" ARGS="VERSION=${TCSH_VERSION}"
-
-.PHONY: dev-pure-on-xonsh
-dev-pure-on-xonsh:
-	$(MAKE) dev-pure-on TARGET=xonsh VERSION="${XONSH_VERSION}" ARGS="VERSION=${XONSH_VERSION}"
-
-.PHONY: dev-pure-on-zsh
-dev-pure-on-zsh:
-	$(MAKE) dev-pure-on TARGET=zsh VERSION="${ZSH_VERSION}" ARGS="VERSION=${ZSH_VERSION}"
+dev-pure-on-%:
+	@$(MAKE) --silent dev-pure-on shell=$*
 
 .PHONY: dev-pure-on
 dev-pure-on:
+	@$(MAKE) --silent dev-on shell=${shell} VERSION="$${shell^^}_VERSION"
+
+.PHONY: dev-on
+dev-on:
+	@echo ${shell} ${VERSION}=${${VERSION}}
 	docker run \
-		--name run-pure-on-${TARGET} \
+		--name run-pure-on-${shell} \
 		--rm \
 		--interactive \
 		--tty \
 		--volume=$$PWD:/home/pure/.pure/ \
-		pure-on-${TARGET}-${VERSION}
+		pure-on-${shell}-${${VERSION}}
 
 
 .PHONY: install-requirements

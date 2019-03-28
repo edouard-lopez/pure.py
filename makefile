@@ -22,38 +22,29 @@ tests:
 	clear
 	pytest --verbose tests/
 
+shell = $*
+shell_name = $(shell echo '$*' | tr '[:lower:]' '[:upper:]')
+shell_version = ${${shell_name}_VERSION}
+
+.PHONY: build-pure-on-%
 build-pure-on-%:
-	@$(MAKE) --silent build-pure-on shell=$* > /dev/null
-
-.PHONY: build-pure-on
-build-pure-on:
-	@$(MAKE) --silent build-on shell=${shell} VERSION="$${shell^^}_VERSION" 
-
-.PHONY: build-on
-build-on:
+	@echo ${shell} ${shell_version}
 	docker build \
 		--file ./containers/${shell}.Dockerfile \
-		--tag=pure-on-${shell}-${${VERSION}} \
-		--build-arg ARGS="VERSION=${${VERSION}}" \
+		--tag=pure-on-${shell}-${shell_version} \
+		--build-arg ARGS="VERSION=${shell_version}" \
 		./
 
+.PHONY: dev-pure-on-%
 dev-pure-on-%:
-	@$(MAKE) --silent dev-pure-on shell=$*
-
-.PHONY: dev-pure-on
-dev-pure-on:
-	@$(MAKE) --silent dev-on shell=${shell} VERSION="$${shell^^}_VERSION"
-
-.PHONY: dev-on
-dev-on:
-	@echo ${shell} ${VERSION}=${${VERSION}}
+	@echo ${shell} ${shell_version}
 	docker run \
 		--name run-pure-on-${shell} \
 		--rm \
 		--interactive \
 		--tty \
 		--volume=$$PWD:/home/pure/.pure/ \
-		pure-on-${shell}-${${VERSION}}
+		pure-on-${shell}-${shell_version}
 
 
 .PHONY: install-requirements

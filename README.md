@@ -13,27 +13,27 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 > Support various shells as possible with only one codebase.
 
-❤️ I'm familiar with some of them (`bash`, `zsh`, `fish`) but would love to have help support the other (`elvish`, `ksh`, `powershell`, `tcsh`).
+❤️ I'm familiar with some of them (`bash`, `zsh`, `fish`) but would love to have help support the other (`elvish`, `ksh`, `powershell`, `tcsh`, `xonsh`).
 
 ## Features
 
 <!-- ✔✖ -->
-| Feature                                                        | `bash` | `elvish` | `fish` | `ksh` | `powershell` | `tcsh` | `zsh` |
-| :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :---- |
-| Excellent prompt character `❯`                                 | **✔**  |          | **✔**  |       |              |        | **✔** |
-| Display current directory tail                                 | **✔**  |          | **✔**  |       |              |        | **✔** |
-| Display `git` branch name                                      | **✔**  |          | **✔**  |       |              |        | **✔** |
-| Display `*` when `git` repository is _dirty_                   | **✔**  |          | **✔**  |       |              |        | **✔** |
-| Display `⇡` when branch is _ahead_<br>(commits to push)        |        |          |        |       |              |        |       |
-| Display `⇣` when branch is _being_<br>(commits to pull)        |        |          |        |       |              |        |       |
-| Change `❯` to red <br>when previous command has failed         | **✔**  | [**✖**][elv] | **✔**  |       |              |        | **✔** |
-| Update terminal title <br>with _current folder_ and _command_  |        |          |        |       |              |        |       |
-| Display _username_ and _hostname_ <br>when in an `SSH` session |        |          |        |       |              |        |       |
-| Display _duration_ <br>when command run more that `5` seconds  |        |          |        |       |              |        |       |
-| Display `Python` _virtualenv_ when activated                   | **✔**  |          | **✔**  |       |              |        | **✔** |
-| Fine control over colors                                       |        |          |        |       |              |        |       |
-| Right prompt control                                           |        |          |        |       |              |        |       |
-| Display `VI` mode and custom symbol <br>for non-insert mode    |        |          |        |       |              |        |       |
+| Feature                                                        | `bash` | `elvish` | `fish` | `ksh` | `powershell` | `tcsh` | `xonsh` | `zsh` |
+| :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :----- | :---- |
+| Excellent prompt character `❯`                                 | **✔**  |          | **✔**  |       |              |        |        | **✔** |
+| Display current directory tail                                 | **✔**  |          | **✔**  |       |              |        |        | **✔** |
+| Display `git` branch name                                      | **✔**  |          | **✔**  |       |              |        |        | **✔** |
+| Display `*` when `git` repository is _dirty_                   | **✔**  |          | **✔**  |       |              |        |        | **✔** |
+| Display `⇡` when branch is _ahead_<br>(commits to push)        |        |          |        |       |              |        |        |       |
+| Display `⇣` when branch is _being_<br>(commits to pull)        |        |          |        |       |              |        |        |       |
+| Change `❯` to red <br>when previous command has failed         | **✔**  | [✖][elv] | **✔**  |       |              |        |        | **✔** |
+| Update terminal title <br>with _current folder_ and _command_  |        |          |        |       |              |        |        |       |
+| Display _username_ and _hostname_ <br>when in an `SSH` session |        |          |        |       |              |        |        |       |
+| Display _duration_ <br>when command run more that `5` seconds  |        |          |        |       |              |        |        |       |
+| Display `Python` _virtualenv_ when activated                   | **✔**  |          | **✔**  |       |              |        |        | **✔** |
+| Fine control over colors                                       |        |          |        |       |              |        |        |       |
+| Right prompt control                                           |        |          |        |       |              |        |        |       |
+| Display `VI` mode and custom symbol <br>for non-insert mode    |        |          |        |       |              |        |        |       |
 
 ## Install
 

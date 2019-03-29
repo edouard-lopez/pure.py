@@ -1,13 +1,19 @@
+import os
+import json
+from pathlib import Path
+
 import colorful
 
-colorful.use_true_colors()
+def load_theme():
+    try:
+        theme_name = os.environ['PURE_THEME']
+    except KeyError: 
+        theme_name = 'tomorrow'
+    finally:
+        with open(Path('./pure/theme/' + theme_name + '.json'), 'r') as theme:
+            scheme = json.load(theme)
 
-primary = colorful.purple1
-info = colorful.lightBlue
-mute = colorful.gray
-success = colorful.green
-normal = colorful.darkGray
-danger = colorful.red3
-light = colorful.white
-warning = colorful.orange
-dark = colorful.black
+    colorful.use_true_colors()
+    colorful.use_palette(scheme)
+    
+    return theme_name, scheme

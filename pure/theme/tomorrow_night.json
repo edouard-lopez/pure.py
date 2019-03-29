@@ -1,0 +1,11 @@
+{
+    "primary": "#b294bb",
+    "info":    "#81a2be",
+    "mute":    "#b4b7b4",
+    "success": "#b5bd68",
+    "normal":  "#282a2e",
+    "danger":  "#cc6666",
+    "light":   "#ffffff",
+    "warning": "#f0c674",
+    "dark":    "#373b41" 
+}

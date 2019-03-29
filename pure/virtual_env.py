@@ -1,7 +1,6 @@
 import os
 
-from pure import colors
-from pure import constants
+from pure import constants, colors
 
 
 def raw():
@@ -13,5 +12,5 @@ def raw():
 def segment():
     return {
         'text': raw(),
-        'style': colors.mute
+        'style': colors.style('mute')
     }

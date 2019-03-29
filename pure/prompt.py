@@ -9,24 +9,31 @@ def layout():
 
 
 def prompt(args):
-    data = {
-        'current_working_path': fetch(current_working_path.segment()),
-        'git_active_branch': fetch(repository.ActiveBranch(os.getcwd()).segment()),
-        'git_is_dirty': fetch(repository.IsDirty(os.getcwd()).segment()),
-        'virtual_env': fetch(virtual_env.segment()),
-        'prompt_symbol': fetch(prompt_symbol.segment(args.last_command_status))
+    segments = {
+        'current_working_path': current_working_path.segment(),
+        'git_active_branch': repository.ActiveBranch(os.getcwd()).segment(),
+        'git_is_dirty': repository.IsDirty(os.getcwd()).segment(),
+        'virtual_env': virtual_env.segment(),
+        'prompt_symbol': prompt_symbol.segment(args.last_command_status)
     }
-    print(layout().format(**data), end='')
+
+    if args.json:
+        [print(segment) for segment in segments.values()]
+        return segments
+    else:
+        [segments.update({name: "{style}{text}".format(**segment)}) for name, segment in segments.items()]
+        print(layout().format(**segments), end='')
 
 
 def fetch(segment):
-    return segment.get('style')(segment.get('text'))
+    return segment.get('style') + segment.get('text')
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process shell variables.')
     parser.add_argument('--last-command-status', dest='last_command_status', type=int,
                         help='last command\'s exit status')
+    parser.add_argument('--json', action='store_true', help='return prompt as a JSON segments with colors')
 
     colors.load_theme()
     prompt(parser.parse_args())

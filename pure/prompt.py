@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from pure import current_working_path, repository, prompt_symbol, virtual_env
+from pure import current_working_path, repository, prompt_symbol, virtual_env, colors
 
 
 def layout():
@@ -28,4 +28,5 @@ if __name__ == "__main__":
     parser.add_argument('--last-command-status', dest='last_command_status', type=int,
                         help='last command\'s exit status')
 
+    colors.load_theme()
     prompt(parser.parse_args())

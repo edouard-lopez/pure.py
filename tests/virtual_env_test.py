@@ -1,6 +1,6 @@
 import os
 
-from pure import colors, virtual_env, constants
+from pure import virtual_env, colors, constants
 
 
 def test_virtual_env_raw_name_is_empty_when_deactivated():
@@ -15,8 +15,9 @@ def test_virtual_env_segment_text_is_empty_when_deactivated():
     os.unsetenv('VIRTUAL_ENV')
     if 'VIRTUAL_ENV' in os.environ:  # when running tests in a virtualenv
         del os.environ['VIRTUAL_ENV']
+    colors.load_theme()
 
-    assert virtual_env.segment() == {'text': '', 'style': colors.mute}
+    assert virtual_env.segment() == {'text': '', 'style': colors.style('mute')}
 
 
 def test_virtual_env_raw_name_is_empty_when_activated():
@@ -27,5 +28,6 @@ def test_virtual_env_raw_name_is_empty_when_activated():
 
 def test_virtual_env_segment_text_is_empty_when_activated():
     os.environ['VIRTUAL_ENV'] = '/path/to/virtual/env'
+    colors.load_theme()
 
-    assert virtual_env.segment() == {'text': 'env', 'style': colors.mute}
+    assert virtual_env.segment() == {'text': 'env', 'style': colors.style('mute')}

@@ -1,6 +1,7 @@
 import tempfile
 
 import git
+import colorful
 
 from pure import colors, repository, constants
 from pure.prompt import fetch
@@ -14,21 +15,26 @@ def test_dummy_directory_has_no_branch_name():
 def test_repository_active_branch_contains_raw_git_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
+        
         assert repository.ActiveBranch(tmp_repo).raw() == 'master'
 
 
 def test_repository_active_branch_segment_contains_text_and_style():
+    colors.load_theme()
+
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         segment = repository.ActiveBranch(tmp_repo).segment()
-        assert segment == {'text': 'master', 'style': colors.mute}
+        
+        assert segment == {'text': 'master', 'style': colors.style('mute')}
 
 
 def test_repository_active_branch_name_color_is_mute():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         segment = repository.ActiveBranch(tmp_repo).segment()
-        assert str(fetch(segment)) == str(colors.mute('master'))
+        
+        assert fetch(segment) in colorful.mute('master').styled_string
 
 
 def test_dummy_directory_is_not_dirty():
@@ -47,12 +53,14 @@ def test_repository_is_dirty_contains_raw_symbol():
 
 
 def test_repository_is_dirty_segment_contains_text_and_style():
+    colors.load_theme()
+
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
         segment = repository.IsDirty(tmp_repo).segment()
-        assert segment == {'text': '*', 'style': colors.mute}
+        assert segment == {'text': '*', 'style': colors.style('mute')}
 
         new_file.close()
 
@@ -63,6 +71,6 @@ def test_repository_dirty_symbol_color_is_mute():
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
         segment = repository.IsDirty(tmp_repo).segment()
-        assert str(fetch(segment)) == str(colors.mute('*'))
 
+        assert fetch(segment) in colorful.mute('*').styled_string
         new_file.close()

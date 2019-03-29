@@ -4,7 +4,7 @@ import colorful
 from pure import colors
 
 
-def test_load_theme_return_theme_name_and_data():
+def test_colors_load_theme_return_theme_name_and_data():
     os.unsetenv('PURE_THEME')
 
     theme, scheme = colors.load_theme()
@@ -23,7 +23,7 @@ def test_load_theme_return_theme_name_and_data():
                             ]
 
 
-def test_default_theme_is_tomorrow():
+def test_colors_default_theme_is_tomorrow():
     os.unsetenv('PURE_THEME')
 
     colors.load_theme()
@@ -37,3 +37,10 @@ def test_default_theme_is_tomorrow():
     assert colorful.light.style   == ('\x1b[38;2;29;31;33m', '\x1b[39m')
     assert colorful.warning.style == ('\x1b[38;2;234;183;0m', '\x1b[39m') 
     assert colorful.dark.style    == ('\x1b[38;2;214;214;214m', '\x1b[39m') 
+
+
+def test_colors_style_only_return_starting_ansi_code():
+    primary = colors.style('primary')
+
+    assert primary == '\x1b[38;2;137;89;168m'
+

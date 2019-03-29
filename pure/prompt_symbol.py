@@ -13,4 +13,4 @@ def segment(last_command_status=constants.SUCCESS):
 
 
 def style(last_command_status):
-    return colors.primary if last_command_status == constants.SUCCESS else colors.danger
+    return colors.style('primary') if last_command_status == constants.SUCCESS else colors.style('danger')

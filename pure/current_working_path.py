@@ -10,5 +10,5 @@ def raw():
 def segment():
     return {
         'text': raw(),
-        'style': colors.info
+        'style': colors.style('info')
     }

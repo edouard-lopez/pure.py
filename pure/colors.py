@@ -17,3 +17,6 @@ def load_theme():
     colorful.use_palette(scheme)
     
     return theme_name, scheme
+
+def style(color):
+    return getattr(colorful, color).style[0]

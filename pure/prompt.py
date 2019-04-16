@@ -1,5 +1,6 @@
 import argparse
 import os
+import json
 
 from pure import current_working_path, repository, prompt_symbol, virtual_env, colors
 
@@ -18,8 +19,8 @@ def prompt(args):
     }
 
     if args.json:
-        [print(segment) for segment in segments.values()]
-        return segments
+        [print(jsonify(segment)) for segment in segments.values()]
+        return [jsonify(segment) for segment in segments.values()]
     else:
         [segments.update({name: "{style}{text}".format(**segment)}) for name, segment in segments.items()]
         print(layout().format(**segments), end='')
@@ -27,6 +28,10 @@ def prompt(args):
 
 def fetch(segment):
     return segment.get('style') + segment.get('text')
+
+
+def jsonify(segment):
+    return json.dumps(segment).replace('\\u00', '\\x')
 
 
 if __name__ == "__main__":

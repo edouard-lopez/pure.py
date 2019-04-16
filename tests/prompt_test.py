@@ -31,21 +31,23 @@ def test_prompt_symbol_is_colored_for_failed_command():
     assert symbol in colorful.danger('❯').styled_string
 
 
-def test_prompt_return_json_with_segment():
+def test_prompt_jsonify_segment():
+    segment = {'text': '/home/pure', 'style': '\x1b[38;2;66;113;174m'}
+
+    json = prompt.jsonify(segment)
+
+    assert json == '{"text": "/home/pure", "style": "\\x1b[38;2;66;113;174m"}'
+
+
+def test_prompt_return_json_with_segments():
     class CommandArguments(object):
         last_command_status = constants.SUCCESS
         json = True
 
     json = prompt.prompt(args=CommandArguments)
 
-    assert list(json.keys()) == [
-                                    'current_working_path',
-                                    'git_active_branch',
-                                    'git_is_dirty',
-                                    'virtual_env',
-                                    'prompt_symbol'
-                                ]
-
+    assert len(json) == 5
+    
 
 def test_prompt_print_layout(capfd):
     class CommandArguments(object):

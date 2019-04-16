@@ -33,6 +33,7 @@ build-pure-on-%:
 		--file ./containers/${shell}.Dockerfile \
 		--tag=pure-on-${shell}-${shell_version} \
 		--build-arg ARGS="VERSION=${shell_version}" \
+		--pull \
 		./
 
 .PHONY: dev-pure-on-%

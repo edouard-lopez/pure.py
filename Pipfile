@@ -9,6 +9,8 @@ wheel = "*"
 twine = "*"
 keyring = "*"
 pure = {editable = true,path = "."}
+pytest = "*"
+pytest-cov = "*"
 
 [packages]
 pytest = "*"

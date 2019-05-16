@@ -1,4 +1,4 @@
-#!/usr/bin/make -sf
+ #!/usr/bin/make -sf
 
 # force use of Bash
 SHELL := /bin/bash
@@ -20,7 +20,7 @@ default: tests
 .PHONY: tests
 tests:
 	clear
-	pytest --verbose tests/
+	pytest --verbose --cov=pure tests/
 
 shell = $*
 shell_name = $(shell echo '$*' | tr '[:lower:]' '[:upper:]')

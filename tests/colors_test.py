@@ -10,16 +10,18 @@ def test_colors_load_theme_return_theme_name_and_data():
     theme, scheme = colors.load_theme()
 
     assert theme == 'tomorrow'
-    assert list(scheme.keys()) == [
-                                "primary",
-                                "info",
-                                "mute",
-                                "success",
-                                "normal",
+    scheme_colors = list(scheme.keys())
+    scheme_colors.sort()
+    assert scheme_colors == [
                                 "danger",
+                                "dark",
+                                "info",
                                 "light",
-                                "warning",
-                                "dark"
+                                "mute",
+                                "normal",
+                                "primary",
+                                "success",
+                                "warning"
                             ]
 
 

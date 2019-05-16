@@ -13,9 +13,9 @@ class ActiveBranch:
             self.repo = {}
 
     def raw(self):
-        if hasattr(self.repo, 'active_branch'):
+        try:
             return str(self.repo.active_branch)
-        else:
+        except:
             return constants.NOTHING
 
     def segment(self):

@@ -10,7 +10,8 @@ def load_theme():
     except KeyError: 
         theme_name = 'tomorrow'
     finally:
-        with open(Path(os.getcwd() + '/pure/theme/' + theme_name + '.json'), 'r') as theme:
+        theme_path = Path(os.getcwd() + '/pure/theme/' + theme_name + '.json')
+        with open(str(theme_path), 'r') as theme:
             scheme = json.load(theme)
 
     colorful.use_true_colors()

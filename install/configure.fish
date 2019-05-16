@@ -1,5 +1,6 @@
 #!/usr/bin/env fish
 
-cp $HOME/.pure/config/fish_prompt.fish $fish_config/functions/
-echo 'set --global --export PURE_EXECUTABLE_PATH $HOME/.pure/' >> $fish_config/config.fish
+mkdir -p $__fish_config_dir/functions/
+cp $HOME/.pure/config/fish_prompt.fish $__fish_config_dir/functions/
+echo 'set --global --export PURE_EXECUTABLE_PATH $HOME/.pure/' >> $__fish_config_dir/config.fish
 exec fish

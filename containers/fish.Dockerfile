@@ -9,11 +9,25 @@ RUN printf "\nBuilding \e[38;5;27mFish-%s\e[m\n\n" ${VERSION}
 
 USER root
 RUN apk add --no-cache coreutils python3
+RUN python3 -m pip install --upgrade pip pipenv
+
+# Install
 RUN adduser --shell /usr/bin/fish -D pure
-
-USER pure
 WORKDIR /home/pure/.pure/
-COPY --chown=pure:pure . /home/pure/.pure/
+COPY --chown=pure:pure \
+        ./Pipfile \
+        ./Pipfile.lock \
+        ./README.md \
+        ./setup.py \
+    /home/pure/.pure/
+COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
+RUN pipenv install --deploy --system --ignore-pipfile
+RUN pip install --editable /home/pure/.pure/
 
-ENTRYPOINT ["fish", "-c"]
-CMD ["echo $fish_config"]
+# Configure
+USER pure
+COPY --chown=pure:pure ./install/configure.fish /home/pure/.pure/install/
+COPY --chown=pure:pure ./config/fish_prompt.fish /home/pure/.pure/config/fish_prompt.fish
+RUN fish $HOME/.pure/install/configure.fish
+
+CMD ["fish"]

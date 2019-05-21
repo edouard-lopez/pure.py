@@ -22,8 +22,9 @@ def prompt(args):
         [print(jsonify(segment)) for segment in segments.values()]
         return [jsonify(segment) for segment in segments.values()]
     else:
-        [segments.update({name: "{style}{text}".format(**segment)}) for name, segment in segments.items()]
-        print(layout().format(**segments), end='')
+        segments_with_style = {}
+        [segments_with_style.update({name: "{style}{text}".format(**segment)}) for name, segment in segments.items()]
+        print(layout().format(**segments_with_style), end='')
 
 
 def fetch(segment):

@@ -31,4 +31,4 @@ COPY --chown=pure:pure ./install/configure.elv /home/pure/.pure/install/
 COPY --chown=pure:pure ./config/prompt.elv /home/pure/.pure/config/prompt.elv
 RUN elvish $HOME/.pure/install/configure.elv
 
-CMD ["/bin/elvish"]
+CMD ["elvish"]

@@ -36,7 +36,7 @@ def test_prompt_jsonify_segment():
 
     json = prompt.jsonify(segment)
 
-    assert json == '{"text": "/home/pure", "style": "\\x1b[38;2;66;113;174m"}'
+    assert json == '{"style": "\\x1b[38;2;66;113;174m", "text": "/home/pure"}'
 
 
 def test_prompt_return_json_with_segments():

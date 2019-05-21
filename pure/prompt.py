@@ -31,7 +31,7 @@ def fetch(segment):
 
 
 def jsonify(segment):
-    return json.dumps(segment).replace('\\u00', '\\x')
+    return json.dumps(segment, sort_keys=True).replace('\\u00', '\\x')
 
 
 if __name__ == "__main__":

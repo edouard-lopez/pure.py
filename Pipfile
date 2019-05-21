@@ -11,9 +11,9 @@ keyring = "*"
 pure = {editable = true,path = "."}
 pytest = "*"
 pytest-cov = "*"
+docker = "*"
 
 [packages]
-pytest = "*"
 colorful = "*"
 gitpython = "*"
 

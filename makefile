@@ -22,6 +22,12 @@ tests:
 	clear
 	pytest --verbose --cov=pure tests/
 
+.PHONY: tests-unit-only
+tests-unit-only:
+	clear
+	pytest --verbose --cov=pure tests/ --ignore=tests/integration_test.py
+
+
 shell = $*
 shell_name = $(shell echo '$*' | tr '[:lower:]' '[:upper:]')
 shell_version = ${${shell_name}_VERSION}

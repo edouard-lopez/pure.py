@@ -8,8 +8,14 @@ ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mFish-%s\e[m\n\n" ${VERSION}
 
 USER root
-RUN apk add --no-cache coreutils python3
-RUN python3 -m pip install --upgrade pip pipenv
+RUN apk add \
+        --no-cache \
+            coreutils \
+            python3
+RUN python3 -m pip install \
+        --upgrade \
+            pip \
+            pipenv
 
 # Install
 RUN adduser --shell /usr/bin/fish -D pure
@@ -21,8 +27,12 @@ COPY --chown=pure:pure \
         ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
-RUN pipenv install --deploy --system --ignore-pipfile
-RUN pip install --editable /home/pure/.pure/
+RUN pipenv install \
+        --deploy \
+        --system \
+        --ignore-pipfile
+RUN pip install \
+        --editable /home/pure/.pure/
 
 # Configure
 USER pure

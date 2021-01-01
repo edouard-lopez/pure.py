@@ -45,3 +45,21 @@ class IsDirty(object):
             'text': self.raw(),
             'style': colors.style('mute')
         }
+
+class PendingCommit(object):
+    repo = None
+
+    def __init__(self, directory):
+        try:
+            self.repo = git.Repo(directory)
+        except Exception:
+            self.repo = {}
+
+    def raw(self):
+        if hasattr(self.repo, 'iter_commits'):
+            unpulled_symbol = '' # '⇣' if self.repo.iter_commits('HEAD...@{upstream}') else constants.NOTHING
+            unpushed_symbol = '⇡' if self.repo.iter_commits('@{upstream}...HEAD') else constants.NOTHING
+            return f'{unpulled_symbol}{unpushed_symbol}'
+        else:
+            return constants.NOTHING
+

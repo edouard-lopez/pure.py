@@ -57,8 +57,9 @@ class PendingCommit(object):
 
     def raw(self):
         if hasattr(self.repo, 'iter_commits'):
-            unpulled_symbol = '' # '⇣' if self.repo.iter_commits('HEAD...@{upstream}') else constants.NOTHING
-            unpushed_symbol = '⇡' if self.repo.iter_commits('@{upstream}...HEAD') else constants.NOTHING
+            branch = self.repo.active_branch
+            unpushed_symbol = '⇡' if list(self.repo.iter_commits(f'{branch}@{{u}}..{branch}')) else constants.NOTHING
+            unpulled_symbol = '⇣' if list(self.repo.iter_commits(f'{branch}..{branch}@{{u}}')) else constants.NOTHING
             return f'{unpulled_symbol}{unpushed_symbol}'
         else:
             return constants.NOTHING

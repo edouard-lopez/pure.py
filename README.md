@@ -19,21 +19,21 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 <!-- ✔✖ -->
 | Feature                                                        | `bash` | `elvish` | `fish` | `ksh` | `powershell` | `tcsh` | `xonsh` | `zsh` |
-| :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :----- | :---- |
-| Excellent prompt character `❯`                                 | **✔**  |          | **✔**  |       |              |        |        | **✔** |
-| Display current directory tail                                 | **✔**  |          | **✔**  |       |              |        |        | **✔** |
-| Display `git` branch name                                      | **✔**  |          | **✔**  |       |              |        |        | **✔** |
-| Display `*` when `git` repository is _dirty_                   | **✔**  |          | **✔**  |       |              |        |        | **✔** |
-| Display `⇡` when branch is _ahead_<br>(commits to push)        |        |          |        |       |              |        |        |       |
-| Display `⇣` when branch is _being_<br>(commits to pull)        |        |          |        |       |              |        |        |       |
-| Change `❯` to red <br>when previous command has failed         | **✔**  | [✖][elv] | **✔**  |       |              |        |        | **✔** |
-| Update terminal title <br>with _current folder_ and _command_  |        |          |        |       |              |        |        |       |
-| Display _username_ and _hostname_ <br>when in an `SSH` session |        |          |        |       |              |        |        |       |
-| Display _duration_ <br>when command run more that `5` seconds  |        |          |        |       |              |        |        |       |
-| Display `Python` _virtualenv_ when activated                   | **✔**  |          | **✔**  |       |              |        |        | **✔** |
-| Fine control over colors                                       |        |          |        |       |              |        |        |       |
-| Right prompt control                                           |        |          |        |       |              |        |        |       |
-| Display `VI` mode and custom symbol <br>for non-insert mode    |        |          |        |       |              |        |        |       |
+| :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :-----  | :---- |
+| Excellent prompt character `❯`                                 | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
+| Display current directory tail                                 | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
+| Display `git` branch name                                      | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
+| Display `*` when `git` repository is _dirty_                   | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
+| Display `⇡` when branch is _ahead_<br>(commits to push)        |        |          |        |       |              |        |         |       |
+| Display `⇣` when branch is _being_<br>(commits to pull)        |        |          |        |       |              |        |         |       |
+| Change `❯` to red <br>when previous command has failed         | **✔**  | [✖][elv] | **✔**  |       |              |        |         | **✔** |
+| Update terminal title <br>with _current folder_ and _command_  |        |          |        |       |              |        |         |       |
+| Display _username_ and _hostname_ <br>when in an `SSH` session |        |          |        |       |              |        |         |       |
+| Display _duration_ <br>when command run more that `5` seconds  |        |          |        |       |              |        |         |       |
+| Display `Python` _virtualenv_ when activated                   | **✔**  |          | **✔**  |       |              |        |         | **✔** |
+| Fine control over colors                                       |        |          |        |       |              |        |         |       |
+| Right prompt control                                           |        |          |        |       |              |        |         |       |
+| Display `VI` mode and custom symbol <br>for non-insert mode    |        |          |        |       |              |        |         |       |
 
 ## Install
 
@@ -41,24 +41,39 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 **requirements:** `git` and `pip`.
 
-    git clone git@github.com:edouard-lopez/pure.git $HOME/.pure
-    pip install pure --user
+Install required Python modules:
+
+    pip install pure colorful gitpython --user
 
 ### Fish
 
+    git clone git@github.com:edouard-lopez/pure-x.git $HOME/.pure
     fish $HOME/.pure/install/configure.fish
 
 ### Zsh
 
+    git clone git@github.com:edouard-lopez/pure-x.git $HOME/.pure
     zsh $HOME/.pure/install/configure.zsh
 
 ### Bash
 
+    git clone git@github.com:edouard-lopez/pure-x.git $HOME/.pure
     bash $HOME/.pure/install/configure.bash
 
 ### Elvish
 
-    elvish $HOME/.pure/install/configure.elv
+Elvish has its own built-in package manager (`epm`), so you do not need to clone
+the repository by hand. Instead, from within the Elvish shell, run the following
+commands:
+
+    use epm
+    epm:install github.com/edouard-lopez/pure-x.git
+    elvish ~/.elvish/lib/github.com/edouard-lopez/pure-x.git/install/configure.elv 
+
+Note: the last command simply adds the following line to your `~/.elvish/rc.elv`
+file, which you can also add by hand or run interactively to test the prompt:
+
+    use github.com/edouard-lopez/pure-x.git/config/prompt
 
 ## Theme
 

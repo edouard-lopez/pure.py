@@ -31,6 +31,16 @@ shell = $*
 shell_name = $(shell echo '$*' | tr '[:lower:]' '[:upper:]')
 shell_version = ${${shell_name}_VERSION}
 
+show-versions:
+	@echo "Bash: ${BASH_VERSION}"
+	@echo "Elvish: ${ELVISH_VERSION}"
+	@echo "Fish: ${FISH_VERSION}"
+	@echo "Ksh: ${KSH_VERSION}"
+	@echo "Pwsh: ${PWSH_VERSION}"
+	@echo "Tcsh: ${TCSH_VERSION}"
+	@echo "Xonsh: ${XONSH_VERSION}"
+	@echo "Zsh: ${ZSH_VERSION}"
+
 .PHONY: build-pure-on-%
 build-pure-on-%:
 	@echo ${shell} ${shell_version}

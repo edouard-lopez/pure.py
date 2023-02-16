@@ -11,7 +11,7 @@ USER root
 RUN apk add \
         --no-cache \
             coreutils \
-            python3 \
+            python3 
 RUN python3 -m ensurepip
 RUN python3 -m pip install \
         --upgrade \

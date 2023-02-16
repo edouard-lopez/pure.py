@@ -1,0 +1,34 @@
+[project]
+name = "pure-prompt"
+version = "2.0.0"
+description = "Pretty, minimal and fast prompt for various shells"
+authors = [
+    {name = "Édouard Lopez", email = "contact@edouard-lopez.com"},
+]
+dependencies = ["colorful", "gitpython"]
+requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+[[tool.pdm.source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "setuptools",
+    "wheel",
+    "twine",
+    "keyring",
+    # "-e #egg=pure",
+    "pytest",
+    "pytest-cov",
+    "docker",
+]
+
+[build-system]
+requires = ["pdm-pep517>=1.0.0"]
+build-backend = "pdm.pep517.api"

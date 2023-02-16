@@ -6,7 +6,7 @@ INTERACTIVE=true
 
 BASH_VERSION := 4.4
 ELVISH_VERSION := latest  # pre-release
-FISH_VERSION := 3.1.2
+FISH_VERSION := 3.5.1
 KSH_VERSION := 2012-08-01
 PWSH_VERSION := 6.1.3-alpine-3.8
 TCSH_VERSION := 6.20.00
@@ -24,7 +24,6 @@ tests:
 
 .PHONY: tests-unit-only
 tests-unit-only:
-	clear
 	pytest --verbose --cov=pure tests/ --ignore=tests/integration_test.py
 
 

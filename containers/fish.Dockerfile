@@ -1,7 +1,7 @@
+# syntax=docker/dockerfile:1.4
 # Speficy fish version to use during build 
 # docker build -t <image> --build-arg VERSION=<version>
-ARG VERSION=3.1.2
-FROM andreiborisov/fish:${VERSION}
+FROM purefish/docker-fish:latest
 
 # Redeclare ARG so its value is available after FROM (cf. https://github.com/moby/moby/issues/34129#issuecomment-417609075)
 ARG VERSION

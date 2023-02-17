@@ -60,6 +60,12 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
     elvish $HOME/.pure/install/configure.elv
 
+## Theme
+
+Declare the name of your theme file using `PURE_THEME` environment variable. 
+A file named `$HOME/.config/.pure/${PURE_THEME}.json` must exists and follow [theme configuration](./pure/theme/) convention.
+
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)

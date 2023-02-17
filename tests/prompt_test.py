@@ -16,7 +16,7 @@ def test_get_styled_text():
 
 
 def test_prompt_symbol_is_colored_for_successful_command():
-    colors.load_theme()
+    colors.Theme()
     
     symbol = prompt.fetch(prompt_symbol.segment(constants.SUCCESS))
 
@@ -24,7 +24,7 @@ def test_prompt_symbol_is_colored_for_successful_command():
 
 
 def test_prompt_symbol_is_colored_for_failed_command():
-    colors.load_theme()
+    colors.Theme()
 
     symbol = prompt.fetch(prompt_symbol.segment(constants.FAIL))
 

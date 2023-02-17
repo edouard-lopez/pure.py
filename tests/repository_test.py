@@ -16,17 +16,17 @@ def test_repository_active_branch_contains_raw_git_branch_name():
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         
-        assert repository.ActiveBranch(tmp_repo).raw() == 'master'
+        assert repository.ActiveBranch(tmp_repo).raw() == 'main'
 
 
 def test_repository_active_branch_segment_contains_text_and_style():
-    colors.load_theme()
+    colors.Theme()
 
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         segment = repository.ActiveBranch(tmp_repo).segment()
         
-        assert segment == {'text': 'master', 'style': colors.style('mute')}
+        assert segment == {'text': 'main', 'style': colors.Theme().style('mute')}
 
 
 def test_repository_active_branch_name_color_is_mute():
@@ -34,7 +34,7 @@ def test_repository_active_branch_name_color_is_mute():
         empty_repo = git.Repo.init(tmp_repo)
         segment = repository.ActiveBranch(tmp_repo).segment()
         
-        assert fetch(segment) in colorful.mute('master').styled_string
+        assert fetch(segment) in colorful.mute('main').styled_string
 
 
 def test_dummy_directory_is_not_dirty():
@@ -53,14 +53,14 @@ def test_repository_is_dirty_contains_raw_symbol():
 
 
 def test_repository_is_dirty_segment_contains_text_and_style():
-    colors.load_theme()
+    colors.Theme()
 
     with tempfile.TemporaryDirectory() as tmp_repo:
         empty_repo = git.Repo.init(tmp_repo)
         new_file = tempfile.NamedTemporaryFile(dir=tmp_repo)
 
         segment = repository.IsDirty(tmp_repo).segment()
-        assert segment == {'text': '*', 'style': colors.style('mute')}
+        assert segment == {'text': '*', 'style': colors.Theme().style('mute')}
 
         new_file.close()
 

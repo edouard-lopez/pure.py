@@ -260,6 +260,19 @@ requires_python = ">=3.6"
 summary = "plugin and hook calling mechanisms for python"
 
 [[package]]
+name = "pure"
+version = "2.0.0"
+requires_python = ">=3.8"
+editable = true
+path = "./."
+summary = "Pretty, minimal and fast prompt for various shells"
+dependencies = [
+    "colorful",
+    "gitpython",
+    "platformdirs>=3.0.0",
+]
+
+[[package]]
 name = "pycparser"
 version = "2.21"
 requires_python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
@@ -443,7 +456,7 @@ summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
 lock_version = "4.1"
-content_hash = "sha256:1fcf4422c7376b10125356a80d1ee752276bf198cb31bbadac65a2c72eec0797"
+content_hash = "sha256:a9740b24ba4de9d39f2404be902d2d2539af4d415ae026a610ca93c9bce1cfa0"
 
 [metadata.files]
 "attrs 22.2.0" = [

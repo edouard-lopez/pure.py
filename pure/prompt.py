@@ -41,5 +41,5 @@ if __name__ == "__main__":
                         help='last command\'s exit status')
     parser.add_argument('--json', action='store_true', help='return prompt as a JSON segments with colors')
 
-    colors.load_theme()
+    colors.Theme()
     prompt(parser.parse_args())

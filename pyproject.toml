@@ -5,7 +5,11 @@ description = "Pretty, minimal and fast prompt for various shells"
 authors = [
     {name = "Édouard Lopez", email = "contact@edouard-lopez.com"},
 ]
-dependencies = ["colorful", "gitpython"]
+dependencies = [
+    "colorful",
+    "gitpython",
+    "platformdirs>=3.0.0",
+]
 requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}

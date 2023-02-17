@@ -21,7 +21,7 @@ class ActiveBranch:
     def segment(self):
         return {
             'text': self.raw(),
-            'style': colors.style('mute')
+            'style': colors.Theme().style('mute')
         }
 
 
@@ -43,5 +43,5 @@ class IsDirty(object):
     def segment(self):
         return {
             'text': self.raw(),
-            'style': colors.style('mute')
+            'style': colors.Theme().style('mute')
         }

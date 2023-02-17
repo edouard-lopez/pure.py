@@ -12,5 +12,5 @@ def raw():
 def segment():
     return {
         'text': raw(),
-        'style': colors.style('mute')
+        'style': colors.Theme().style('mute')
     }

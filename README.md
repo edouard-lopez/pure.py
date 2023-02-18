@@ -62,8 +62,7 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 ## Theme
 
-Declare the name of your theme file using `PURE_THEME` environment variable. 
-A file named `$HOME/.config/.pure/${PURE_THEME}.json` must exists and follow [theme configuration](./pure/theme/) convention.
+Set `PURE_THEME` environment variable and edit your config file (see [more about theme configuration](./pure/theme/)).
 
 
 ## Contributing

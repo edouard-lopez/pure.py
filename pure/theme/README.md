@@ -8,9 +8,9 @@ I used [Base16 schemes][base16]
 
 ## Create your own
 
-Copy `pure/theme/template.json` to your `mine.json` and update colors. 
+Declare the name of your theme file using `PURE_THEME` environment variable, the matching file `$HOME/.config/.pure/${PURE_THEME}.json` will be created automatically! :sparkle:
 
-Then edit your config to pass the name of your file to pure using something like `--theme monokai`.
+Then edit your config to adjust the color.
 
 ```
 {

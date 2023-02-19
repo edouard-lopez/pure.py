@@ -32,7 +32,7 @@ dev = [
     "pytest-cov",
     "docker",
     "black>=23.1.0",
-    "-e file:///${PROJECT_ROOT}/.#egg=pure",
+    # "-e file:///${PROJECT_ROOT}/.#egg=pure",
 ]
 
 [build-system]

@@ -1,5 +1,5 @@
 [project]
-name = "pure-prompt"
+name = "pure"
 version = "2.1.0"
 description = "Pretty, minimal and fast prompt for various shells"
 authors = [

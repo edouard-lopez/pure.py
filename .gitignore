@@ -18,3 +18,4 @@ dist/
 # Virtual env
 env/
 .pdm.toml
+.envrc

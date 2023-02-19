@@ -21,3 +21,9 @@ jobs:
           tag_prefix: "v"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  publish-to-pipy: # Publish when on master
+    needs: [add-version-tag]
+    if: contains(github.ref, 'master')
+    uses: ./.github/workflows/publish.yml
+    secrets: inherit

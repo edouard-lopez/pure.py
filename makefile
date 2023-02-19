@@ -87,4 +87,18 @@ upload-package:
 
 .PHONY: setup-keyring
 setup-keyring:
-	 keyring set https://upload.pypi.org/legacy/ edouard-lopez
+	keyring set https://upload.pypi.org/legacy/ edouard-lopez
+
+.PHONY: publish-to-pipy
+publish-to-pipy:
+	pdm publish \
+		--username edouard-lopez \
+		--password "$$PURE_PYPI_TOKEN" \
+		--repository https://pypi.org/simple
+
+.PHONY: publish-to-test-pipy
+publish-to-test-pipy:
+	pdm publish \
+		--username edouard-lopez \
+		--password "$$PURE_PYPI_TOKEN" \
+		--repository https://test.pypi.org/simple

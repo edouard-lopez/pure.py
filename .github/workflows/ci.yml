@@ -2,10 +2,20 @@ name: Pure.py CI
 
 on:
   push:
+    branches:
+      - 'main'
+    paths:
+      - "**.py"
+      - ".github/**/*.yml"
+      - "!pyproject.toml"
   pull_request:
     types:
       - opened
       - synchronize
+    paths:
+      - "**.py"
+      - ".github/**/*.yml"
+      
 jobs:
   test-in-ci:
 
@@ -40,3 +50,9 @@ jobs:
       - name: Run Tests
         run: |
           pdm run make tests-unit-only
+
+  bump-version: # Bump when on master
+    needs: [test-in-ci]
+    if: contains(github.ref, 'master')
+    uses: ./.github/workflows/bump-version.yml
+    secrets: inherit

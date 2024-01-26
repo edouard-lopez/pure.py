@@ -4,14 +4,14 @@
 SHELL := /bin/bash
 INTERACTIVE=true
 
-BASH_VERSION := 4.4
+BASH_VERSION := 5
 ELVISH_VERSION := latest  # pre-release
-FISH_VERSION := 3.5.1
+FISH_VERSION := 3.7.0
 KSH_VERSION := 2012-08-01
 PWSH_VERSION := 6.1.3-alpine-3.8
 TCSH_VERSION := 6.20.00
 XONSH_VERSION := latest
-ZSH_VERSION := 5.4.2-r1
+ZSH_VERSION := 5.9-r2
 
 		
 .PHONY: default

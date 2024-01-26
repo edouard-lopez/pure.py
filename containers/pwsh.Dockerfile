@@ -8,7 +8,9 @@ ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mPowershell-%s\e[m\n\n" ${VERSION}
 
 USER root
-RUN apk add --no-cache python3
+RUN apk add --no-cache \
+		python3 \
+		py3-pip
 RUN adduser --shell /usr/bin/pwsh -D pure
 
 USER pure

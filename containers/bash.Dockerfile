@@ -9,26 +9,39 @@ RUN printf "\nBuilding \e[38;5;27mBash-%s\e[m\n\n" ${VERSION}
 
 # Requirements
 USER root
-RUN apk add --no-cache python3 git
-RUN python3 -m pip install --upgrade pip pipenv
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    git
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+RUN python3 \
+    -m pip install \
+    --upgrade \
+    pipenv
 
 # Install
 RUN adduser --shell /bin/bash -D pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure \
-        ./Pipfile \
-        ./Pipfile.lock \
-        ./README.md \
-        ./setup.py \
+    ./Pipfile \
+    ./Pipfile.lock \
+    ./README.md \
+    ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
-RUN pipenv install --deploy --system --ignore-pipfile
-RUN pip install --editable /home/pure/.pure/
+RUN pipenv install \ 
+		--deploy \ 
+		--system \ 
+		--ignore-pipfile
+# hadolint ignore=DL3042
+RUN pip install \ 
+    --editable \ 
+    /home/pure/.pure/
 
 # Configure
 USER pure
 COPY --chown=pure:pure ./install/configure.bash /home/pure/.pure/install/
 COPY --chown=pure:pure ./config/prompt.bash /home/pure/.pure/config/prompt.bash
-RUN bash $HOME/.pure/install/configure.bash
+RUN bash "$HOME/.pure/install/configure.bash"
 
 CMD ["bash"]

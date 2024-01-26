@@ -13,9 +13,12 @@ RUN printf "\nBuilding \e[38;5;27mFish-%s\e[m\n\n" ${VERSION}
 
 USER root
 RUN apt-get update && apt-get install --yes python3
-RUN python3 -m pip install --upgrade \
-    pip \
-    pipenv
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+RUN python3 \
+        -m pip install \
+        --upgrade \
+            pip \
+            pipenv
 
 # Install
 RUN yes '' | adduser --shell /bin/bash --disabled-password pure
@@ -32,7 +35,10 @@ RUN pipenv install \
         --deploy \
         --system \
         --ignore-pipfile
-RUN pip install --editable /home/pure/.pure/
+RUN pip install \ 
+		--editable \ 
+		--no-cache-dir \ 
+		/home/pure/.pure/
 RUN pip install \
         pathlib2
 

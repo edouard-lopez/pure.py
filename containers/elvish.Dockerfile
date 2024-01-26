@@ -9,8 +9,15 @@ RUN printf "\nBuilding \e[38;5;27mElvish-%s\e[m\n\n" ${VERSION}
 
 # Requirements
 USER root
-RUN apk add --no-cache python3
-RUN python3 -m pip install --upgrade pip pipenv
+RUN apk add --no-cache \
+		python3 \
+		py3-pip
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+RUN python3 \
+        -m pip install \
+        --upgrade \
+            pip \
+            pipenv
 
 # Install
 RUN adduser --shell /bin/elvish -D pure
@@ -22,8 +29,14 @@ COPY --chown=pure:pure \
         ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
-RUN pipenv install --deploy --system --ignore-pipfile
-RUN pip install --editable /home/pure/.pure/
+RUN pipenv install \ 
+		--deploy \ 
+		--system \ 
+		--ignore-pipfile
+RUN pip install \ 
+		--editable \ 
+		--no-cache-dir \ 
+		/home/pure/.pure/
 
 # Configure
 USER pure

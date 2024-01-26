@@ -8,7 +8,10 @@ ARG VERSION
 RUN printf "\nBuilding \e[38;5;27mTcsh-%s\e[m\n\n" ${VERSION}
 
 USER root
-RUN apt-get update && apt-get install --yes python3
+RUN apt-get update \
+    && apt-get install \
+            --yes \
+                python3
 RUN yes '' | adduser --shell /bin/tcsh --disabled-password pure
 
 USER pure

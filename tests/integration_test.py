@@ -16,17 +16,17 @@ def test_bash_render():
     assert '\n' in prompt.decode()
     assert '❯' in prompt.decode()
 
-# Todo: see https://stackoverflow.com/a/56229084/802365
-# def test_elvish_render():
-#     client.images.build(path='./',
-#                         dockerfile='containers/elvish.Dockerfile',
-#                         tag='pure-on-elvish:integration-test',
-#                         rm=True)
-#     prompt = client.containers.run("pure-on-elvish:integration-test", ["elvish", "-c", "'$edit:prompt | each $print~'"])
-#
-#     assert '/home/pure/.pure' in prompt.decode()
-#     assert '\n' in prompt.decode()
-#     assert '❯' in prompt.decode()
+# # Todo: see https://stackoverflow.com/a/56229084/802365
+# # def test_elvish_render():
+# #     client.images.build(path='./',
+# #                         dockerfile='containers/elvish.Dockerfile',
+# #                         tag='pure-on-elvish:integration-test',
+# #                         rm=True)
+# #     prompt = client.containers.run("pure-on-elvish:integration-test", ["elvish", "-c", "'$edit:prompt | each $print~'"])
+# #
+# #     assert '/home/pure/.pure' in prompt.decode()
+# #     assert '\n' in prompt.decode()
+# #     assert '❯' in prompt.decode()
 
 
 def test_fish_render():

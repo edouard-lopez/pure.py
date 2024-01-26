@@ -9,31 +9,33 @@ RUN printf "\nBuilding \e[38;5;27mFish-%s\e[m\n\n" ${VERSION}
 
 USER root
 RUN apk add \
-        --no-cache \
-            coreutils \
-            python3 
-RUN python3 -m ensurepip
-RUN python3 -m pip install \
-        --upgrade \
-            pip \
-            pipenv
+    --no-cache \
+    coreutils \
+    python3 \
+    py3-pip 
+ENV PIP_BREAK_SYSTEM_PACKAGES 1
+RUN python3 \
+    -m pip install \
+    --upgrade \
+    pip \
+    pipenv
 
 # Install
 RUN adduser --shell /usr/bin/fish -D pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure \
-        ./Pipfile \
-        ./Pipfile.lock \
-        ./README.md \
-        ./setup.py \
+    ./Pipfile \
+    ./Pipfile.lock \
+    ./README.md \
+    ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
 RUN pipenv install \
-        --deploy \
-        --system \
-        --ignore-pipfile
+    --deploy \
+    --system \
+    --ignore-pipfile
 RUN pip install \
-        --editable /home/pure/.pure/
+    --editable /home/pure/.pure/
 
 # Configure
 USER pure

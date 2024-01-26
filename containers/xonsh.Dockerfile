@@ -9,21 +9,32 @@ RUN printf "\nBuilding \e[38;5;27mXonsh-%s\e[m\n\n" ${VERSION}
 
 # Requirements
 USER root
-RUN apk add --no-cache git
-RUN python3 -m pip install --upgrade pip pipenv xonsh
+RUN apk add --no-cache \
+    git \
+    py3-pip
+RUN python3 -m pip install --upgrade \
+    pip \
+    pipenv \
+    xonsh
 
 # Install
 RUN adduser -s /bin/xonsh -D pure
 WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure \
-        ./Pipfile \
-        ./Pipfile.lock \
-        ./README.md \
-        ./setup.py \
+    ./Pipfile \
+    ./Pipfile.lock \
+    ./README.md \
+    ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
-RUN pipenv install --deploy --system --ignore-pipfile
-RUN pip install --editable /home/pure/.pure/
+RUN pipenv install \ 
+		--deploy \ 
+		--system \ 
+		--ignore-pipfile
+RUN pip install \ 
+		--editable \ 
+		--no-cache-dir \ 
+		/home/pure/.pure/
 
 # Configure
 USER pure

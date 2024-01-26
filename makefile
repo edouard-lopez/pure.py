@@ -26,6 +26,10 @@ tests:
 tests-unit-only:
 	pytest --verbose --cov=pure tests/ --ignore=tests/integration_test.py
 
+.PHONY: tests-integration-only
+tests-integration-only:
+	pytest --verbose --cov=pure tests/integration_test.py
+
 
 shell = $*
 shell_name = $(shell echo '$*' | tr '[:lower:]' '[:upper:]')

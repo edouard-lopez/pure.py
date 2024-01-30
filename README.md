@@ -19,7 +19,7 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 
 <!-- ✔✖ -->
 | Feature                                                        | `bash` | `elvish` | `fish` | `ksh` | `powershell` | `tcsh` | `xonsh` | `zsh` |
-| :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :-----  | :---- |
+| :------------------------------------------------------------- | :----- | :------- | :----- | :---- | :----------- | :----- | :------ | :---- |
 | Excellent prompt character `❯`                                 | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
 | Display current directory tail                                 | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
 | Display `git` branch name                                      | **✔**  | **✔**    | **✔**  |       |              |        |         | **✔** |
@@ -79,7 +79,6 @@ file, which you can also add by hand or run interactively to test the prompt:
 
 Set `PURE_THEME` environment variable and edit your config file (see [more about theme configuration](./pure/theme/)).
 
-
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
@@ -89,5 +88,15 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md)
 MIT © Édouard Lopez.
 
 [elv]: https://github.com/elves/elvish/issues/799#issuecomment-471257473
-[travis-link]: https://travis-ci.com/edouard-lopez/pure "TravisCI" 
+[travis-link]: https://travis-ci.com/edouard-lopez/pure "TravisCI"
 [travis-badge]: https://travis-ci.com/edouard-lopez/pure.svg?branch=master
+
+## Ports
+
+* Original [sindresorhus/pure](https://github.com/sindresorhus/pure) Zsh implementation ;
+* :fish: [pure-fish/pure](https://github.com/pure-fish/pure/) Fish implementation (features rich) ;
+* :snake: [edouard-lopez/pure.py](https://github.com/edouard-lopez/pure.py/) Python implementation  (partial features) ;
+* :goat: [edouard-lopez/pure.go](https://github.com/edouard-lopez/pure.go/) Golang implementation  (partial features) ;
+* :gear: [xcambar/purs](https://github.com/xcambar/purs) Rust implementation ;
+* :window: [nickcox/pure-pwsh](https://github.com/nickcox/pure-pwsh/) PowerShell implementation.
+* :shell: [krashikiworks/pure-prompt-bash](https://github.com/krashikiworks/pure-prompt-bash) Bash implementation.

@@ -8,6 +8,8 @@ on:
       - "**.py"
       - ".github/**/*.yml"
       - "!pyproject.toml"
+      - "containers/**"
+      - "!containers/**.lock"
   pull_request:
     types:
       - opened
@@ -15,6 +17,8 @@ on:
     paths:
       - "**.py"
       - ".github/**/*.yml"
+      - "containers/**"
+      - "!containers/**.lock"
       
 jobs:
   test-in-ci:

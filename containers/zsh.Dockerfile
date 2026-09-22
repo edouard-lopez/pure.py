@@ -1,11 +1,9 @@
-# Speficy fish version to use during build 
-# docker build -t <image> --build-arg VERSION=<version>
-ARG VERSION=5.9-r2
-FROM python:3.12-alpine3.19
+# Override ZSH_IMAGE to test a different Python Alpine image. The default digest is immutable.
+ARG ZSH_IMAGE=python:3.12-alpine3.19@sha256:017a82f185bf6f10e62156f3e89b7e694d56d613b5a3f4dbf1d28f1014a972ed
+FROM ${ZSH_IMAGE}
 
-# Redeclare ARG so its value is available after FROM (cf. https://github.com/moby/moby/issues/34129#issuecomment-417609075)
-ARG VERSION
-RUN printf "\nBuilding \e[38;5;27mZsh-%s\e[m\n\n" ${VERSION}
+ARG ZSH_IMAGE
+RUN printf "\nBuilding from \e[38;5;27m%s\e[m\n\n" "${ZSH_IMAGE}"
 
 # Requirements
 USER root
@@ -13,11 +11,9 @@ RUN apk add --no-cache \
     zsh \
     git \
     py3-pip
-RUN python3 \
-    -m pip install \
-    --upgrade \
-    pip \
-    pipenv
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ARG BOOTSTRAP_PIPENV_VERSION=2024.4.1
+RUN python3 -m pip install --no-cache-dir "pipenv==${BOOTSTRAP_PIPENV_VERSION}"
 
 # Install
 RUN adduser -s /usr/bin/zsh -D pure
@@ -25,24 +21,23 @@ WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure \
     ./Pipfile \
     ./Pipfile.lock \
+    /home/pure/.pure/
+RUN pipenv install \
+    --deploy \
+    --system \
+    --ignore-pipfile
+COPY --chown=pure:pure \
     ./README.md \
     ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
-RUN pipenv install \ 
-		--deploy \ 
-		--system \ 
-		--ignore-pipfile
-RUN pip install \ 
-    --editable \ 
-    /home/pure/.pure/
+RUN python3 -m pip install --no-cache-dir --editable /home/pure/.pure/
 
 # Configure
 USER pure
 COPY --chown=pure:pure ./install/configure.zsh /home/pure/.pure/install/
 COPY --chown=pure:pure ./config/prompt.zsh /home/pure/.pure/config/prompt.zsh
-RUN echo '#' > /home/pure/.zshrc 
+RUN echo '#' > /home/pure/.zshrc
 RUN zsh -x "$HOME/.pure/install/configure.zsh"
-
 
 CMD ["/bin/zsh","-l"]

@@ -1,11 +1,9 @@
-# Speficy fish version to use during build 
-# docker build -t <image> --build-arg VERSION=<version>
-ARG VERSION=latest
-FROM bash:${VERSION}
+# Override BASH_IMAGE to test a different Bash image. The default digest is immutable.
+ARG BASH_IMAGE=bash@sha256:61962062d969cb46dfc2bad061d36342406fa485f64f246aa7e95693ca07df1f
+FROM ${BASH_IMAGE}
 
-# Redeclare ARG so its value is available after FROM (cf. https://github.com/moby/moby/issues/34129#issuecomment-417609075)
-ARG VERSION
-RUN printf "\nBuilding \e[38;5;27mBash-%s\e[m\n\n" ${VERSION}
+ARG BASH_IMAGE
+RUN printf "\nBuilding from \e[38;5;27m%s\e[m\n\n" "${BASH_IMAGE}"
 
 # Requirements
 USER root
@@ -13,11 +11,9 @@ RUN apk add --no-cache \
     python3 \
     py3-pip \
     git
-ENV PIP_BREAK_SYSTEM_PACKAGES 1
-RUN python3 \
-    -m pip install \
-    --upgrade \
-    pipenv
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ARG BOOTSTRAP_PIPENV_VERSION=2024.4.1
+RUN python3 -m pip install --no-cache-dir "pipenv==${BOOTSTRAP_PIPENV_VERSION}"
 
 # Install
 RUN adduser --shell /bin/bash -D pure
@@ -25,18 +21,17 @@ WORKDIR /home/pure/.pure/
 COPY --chown=pure:pure \
     ./Pipfile \
     ./Pipfile.lock \
+    /home/pure/.pure/
+RUN pipenv install \
+    --deploy \
+    --system \
+    --ignore-pipfile
+COPY --chown=pure:pure \
     ./README.md \
     ./setup.py \
     /home/pure/.pure/
 COPY --chown=pure:pure ./pure/ /home/pure/.pure/pure/
-RUN pipenv install \ 
-		--deploy \ 
-		--system \ 
-		--ignore-pipfile
-# hadolint ignore=DL3042
-RUN pip install \ 
-    --editable \ 
-    /home/pure/.pure/
+RUN python3 -m pip install --no-cache-dir --editable /home/pure/.pure/
 
 # Configure
 USER pure

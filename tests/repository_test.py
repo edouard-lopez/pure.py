@@ -74,3 +74,48 @@ def test_repository_dirty_symbol_color_is_mute():
 
         assert fetch(segment) in colorful.mute('*').styled_string
         new_file.close()
+
+import os
+
+
+def test_repository_active_branch_in_subfolder():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        repo = git.Repo.init(tmp_repo, initial_branch="main")
+        sub = os.path.join(tmp_repo, "sub", "folder")
+        os.makedirs(sub)
+        try:
+            assert repository.ActiveBranch(sub).raw() == "main"
+        finally:
+            repo.close()
+
+
+def test_repository_active_branch_detached_head():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        repo = git.Repo.init(tmp_repo, initial_branch="main")
+        f = os.path.join(tmp_repo, "file.txt")
+        with open(f, "w") as fh:
+            fh.write("hello")
+        repo.index.add(["file.txt"])
+        commit = repo.index.commit("initial commit")
+        repo.head.reference = commit
+        repo.head.reset(index=True, working_tree=True)
+        try:
+            raw = repository.ActiveBranch(tmp_repo).raw()
+            assert raw != constants.NOTHING
+            assert len(raw) > 0
+        finally:
+            repo.close()
+
+
+def test_repository_is_dirty_in_subfolder():
+    with tempfile.TemporaryDirectory() as tmp_repo:
+        repo = git.Repo.init(tmp_repo, initial_branch="main")
+        sub = os.path.join(tmp_repo, "sub", "folder")
+        os.makedirs(sub)
+        new_file = os.path.join(tmp_repo, "untracked.txt")
+        with open(new_file, "w") as fh:
+            fh.write("dirty")
+        try:
+            assert repository.IsDirty(sub).raw() == "*"
+        finally:
+            repo.close()

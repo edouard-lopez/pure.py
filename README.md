@@ -38,7 +38,7 @@ Original design by [sindresorhus/pure](https://github.com/sindresorhus/pure).
 ## Gap matrix
 
 Parity with the reference [pure-fish/pure](https://github.com/pure-fish/pure) implementation.
-See [How Pure works](https://pure-fish.github.io/pure/doc/#how-it-works) for the Fish internals, and the [From Fish to Python](https://github.com/edouard-lopez/pure.py/wiki/From-Fish-to-Python) wiki page for the porting guide.
+See [How Pure works](https://pure-fish.github.io/pure/doc/#how-it-works) for the Fish internals, and the [From Fish to Python](from-fish-to-python.md) guide for the porting guide.
 
 ✅ done · 🟡 partial · ❌ missing. Phases match the repository milestones.
 

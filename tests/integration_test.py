@@ -12,7 +12,7 @@ def test_bash_render():
                         rm=True)
     prompt = client.containers.run("pure-on-bash:integration-test", ["bash", "-c", "-i", "echo $PS1"])
 
-    assert '/home/pure/.pure' in prompt.decode()
+    assert '~/.pure' in prompt.decode()
     assert '\n' in prompt.decode()
     assert '❯' in prompt.decode()
 
@@ -37,7 +37,7 @@ def test_fish_render():
     prompt = client.containers.run("pure-on-fish:integration-test", ["fish", "-c", "'fish_prompt'"])
     prompt.join('')
 
-    assert '/home/pure/.pure' in prompt.decode()
+    assert '~/.pure' in prompt.decode()
     assert '\n' in prompt.decode()
     assert '❯' in prompt.decode()
 
@@ -49,6 +49,6 @@ def test_zsh_render():
                         rm=True)
     prompt = client.containers.run("pure-on-zsh:integration-test", ["zsh", "-c", "-i", "echo $PROMPT"])
 
-    assert '/home/pure/.pure' in prompt.decode()
+    assert '~/.pure' in prompt.decode()
     assert '\n' in prompt.decode()
     assert '❯' in prompt.decode()

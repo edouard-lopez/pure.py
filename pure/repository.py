@@ -21,8 +21,8 @@ class ActiveBranch:
             return str(self.repo.active_branch)
         except TypeError:
             try:
-                name = self.repo.git.name_rev('--name-only', 'HEAD')
-                return str(name).strip()
+                branch_name = self.repo.git.name_rev('--name-only', 'HEAD')
+                return str(branch_name).strip()
             except Exception:
                 return constants.NOTHING
         except Exception:
